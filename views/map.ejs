@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset='utf-8'>
+    <title>HELPET - inicio</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
+    <!-- estilos -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="css/perdido.css">
+    <!-- scripts -->
+    <!-- iconos font awesome -->
+    <script src="https://use.fontawesome.com/fcfd0a87ec.js"></script>
+
+</head>
+
+<body>
+    <div class="fromneet" id="test">
+        <div class="form-input">
+            <input  type="text">
+        </div>
+    </div>
+    <% include ./include/partials/nav %>
+    <% include ./include/modals/login-modal %>
+
+    <div class="cont cont--inicio">
+        <div class="cont--tarjetas">
+            <div class="content">
+                <% include ./include/partials/list-posts %>
+            </div>
+        </div>
+        <div class="cont--mapa">
+            <div id='map'></div>
+        </div>
+    </div>
+
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
+    <script src="js/main.js"></script>
+    <script src="js/mapbox.view.js"></script>
+    <script>
+
+        var mapboxView = new MapboxView('map');
+        mapboxView.fetchPostTypeMap();
+
+    </script>
+    <script type="text/javascript" src="js/login.js"></script>
+
+</body>
+
+</html>

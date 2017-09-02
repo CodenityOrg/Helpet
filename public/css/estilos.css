@@ -1,0 +1,480 @@
+/**
+ * tipografia open sans
+ */
+
+
+ @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
+
+/* @font-face {
+    font-family: 'open sans';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/open_sans/OpenSans-Light.ttf');
+}
+
+@font-face {
+    font-family: 'open sans';
+    font-style: italic;
+    font-weight: 300;
+    src: url('../fonts/open_sans/OpenSans-LightItalic.ttf');
+}
+
+@font-face {
+    font-family: 'open sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/open_sans/OpenSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'open sans';
+    font-style: italic;
+    font-weight: 400;
+    src: url('../fonts/open_sans/OpenSans-Italic.ttf');
+}
+
+@font-face {
+    font-family: 'open sans';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../fonts/open_sans/OpenSans-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'open sans';
+    font-style: italic;
+    font-weight: 500;
+    src: url('../fonts/open_sans/OpenSans-SemiBoldItalic.ttf');
+}
+
+@font-face {
+    font-family: 'open sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/open_sans/OpenSans-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'open sans';
+    font-style: italic;
+    font-weight: 700;
+    src: url('../fonts/open_sans/OpenSans-BoldItalic.ttf');
+}
+
+@font-face {
+    font-family: 'open sans';
+    font-style: normal;
+    font-weight: 900;
+    src: url('../fonts/open_sans/OpenSans-ExtraBold.ttf');
+}
+
+@font-face {
+    font-family: 'open sans';
+    font-style: italic;
+    font-weight: 900;
+    src: url('../fonts/open_sans/OpenSans-ExtraBoldItalic.ttf');
+} */
+
+
+/**
+ * iconos icomoon
+ */
+
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.eot');
+    src: url('../fonts/icomoon.eot?akfs2b#iefix') format('embedded-opentype'), url('../fonts/icomoon.ttf?akfs2b') format('truetype'), url('../fonts/icomoon.woff?akfs2b') format('woff'), url('../fonts/icomoon.svg?akfs2b#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-flechaabajo:before {
+    content: "\e900";
+}
+
+.icon-Iconañadir:before {
+    content: "\e901";
+}
+
+.icon-Iconfaceook:before {
+    content: "\e902";
+}
+
+.icon-Iconinstagram:before {
+    content: "\e903";
+}
+
+.icon-Iconlupa:before {
+    content: "\e904";
+}
+
+.icon-Icontwitter:before {
+    content: "\e905";
+}
+
+.icon-image:before {
+    content: "\e90d";
+}
+
+.icon-podcast:before {
+    content: "\e91c";
+}
+
+.icon-location2:before {
+    content: "\e948";
+}
+
+.icon-calendar:before {
+    content: "\e953";
+}
+
+.icon-mobile:before {
+    content: "\e958";
+}
+
+.icon-menu:before {
+    content: "\e9bd";
+}
+
+.icon-plus:before {
+    content: "\ea0a";
+}
+
+.icon-minus:before {
+    content: "\ea0b";
+}
+
+.icon-cross:before {
+    content: "\ea0f";
+}
+
+.icon-checkmark:before {
+    content: "\ea10";
+}
+
+.icon-google-plus3:before {
+    content: "\ea8d";
+}
+
+.icon-whatsapp:before {
+    content: "\ea93";
+}
+
+
+/**
+ * variables
+ */
+
+body {
+    --bg-color-transparente: rgba(33, 177, 106, .8);
+    --color-logo-verde: rgba(33, 177, 106, 1);
+    --color-gris: #f2f2f2;
+}
+
+
+/**
+ * estilos generales
+ */
+
+body {
+    min-height: 100vh;
+    position: relative;
+}
+
+.filtro {
+    margin: 0;
+    padding: 0;
+    background: url("../img/img-fondo.png");
+
+    height: 100vh;
+}
+
+
+/**
+ * estilos navbar principal
+ */
+
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding-top: 4em;
+    padding-bottom: 0;
+    padding-left: 3em;
+    padding-right: 3em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    transition: all .3s;
+}
+
+.navbar__logo {
+    max-width: 10em;
+    display: flex;
+    align-items: center;
+}
+
+.navbar__logo img {
+    max-width: 100%;
+}
+
+.navbar__menu {
+    list-style: none;
+    max-width: 50%;
+}
+
+.navbar__menu li {
+    display: inline-block;
+}
+
+.navbar__menu li a,
+.navbar__menu li button {
+    display: block;
+    color: inherit;
+    font-family: "open sans";
+    font-weight: 300;
+    font-size: 1.2em;
+    text-decoration: none;
+    margin-right: 1em;
+    transition: all .3s;
+    outline: none;
+    border: none;
+    background: none;
+}
+
+/**
+ * navbar modificado para la pagina de inicio
+ */
+.navbar--inicio {
+    background: white;
+    color: var(--color-logo-verde);
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+
+/**
+ * estilos slogan principal
+ */
+
+.cont {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.cont--slogan {
+    padding-top: 6em;
+    padding-left: 3em;
+    padding-right: 3em;
+    display: flex;
+    align-items: center;
+    background: var(--bg-color-transparente);
+    height: 100%;
+}
+
+.cont--slogan .slogan, .cont--slogan .logo {
+    flex-basis: 50%;
+}
+
+.cont--slogan .slogan {
+    font-weight: 300;
+    color: white;
+}
+
+.cont--slogan .slogan h3 {
+    color: inherit;
+    font-weight: 300;
+    font-size: 2em;
+}
+
+.cont--slogan .logo {}
+
+.cont--slogan .logo img {
+    display: block;
+    margin: auto auto;
+    max-width: 11em;
+}
+
+.cont--slogan .slogan span {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: block;
+}
+
+.cont--slogan .slogan a {
+    display: block;
+    padding: 1em;
+    margin-top: 1.6em;
+    color: var(--color-logo-verde);
+    background: white;
+    text-decoration: none;
+    text-align: center;
+    max-width: 10em;
+}
+
+/**
+ * contenedor del inicio
+ * seccion de las tarjetas de perritos perdidos
+ * y del mapa
+ */
+.cont--inicio {
+    padding-top: 0;
+    display: flex;
+    background-color: var(--color-gris);
+}
+
+.cont--inicio .cont--tarjetas {
+    padding-top: 4em;
+    padding-bottom: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
+    flex: 0 0 35%;
+}
+
+.cont--inicio .cont--mapa {
+    min-height: 100vh;
+    flex: 0 0 65%;
+    padding-top:2em;
+}
+.cont--inicio .cont--mapa #map {
+    width: 65%;
+    min-height: 100vh;
+    position: fixed;
+}
+
+
+/**
+ * modal de inicio de sesion
+ */
+
+.modal--inicio-sesion.modal__box {
+    background: rgba(242, 242, 242, 1);
+    border-radius: 0.5em;
+}
+
+.modal--inicio-sesion .modal-header {
+    position: absolute;
+    width: 100%;
+}
+
+.modal--inicio-sesion .modal-body {
+    display: flex;
+    align-items: center;
+}
+/* partes del cuerpo del modal */
+.modal--inicio-sesion .modal-body .col-6 {
+    flex: 0 0 50%;
+    padding: 0 3em;
+}
+.modal--inicio-sesion .modal-body .img-promo {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    border-right: 2px solid var(--color-logo-verde);
+}
+.modal--inicio-sesion .modal-body .form-login {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+
+.modal--inicio-sesion .modal-body .titulo {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 300;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.modal--inicio-sesion .modal-body .img-promo .slogan {
+    display: block;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.modal--inicio-sesion .modal-body .img-promo img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5em;
+    width: 100%;
+}
+
+.modal--inicio-sesion .modal-body button[type="submit"] {
+    border: none;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    padding: 0.5em 2em;
+    font-size: 0.8em;
+    line-height: 2em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+    background: var(--color-logo-verde);
+}
+.modal--inicio-sesion .modal-body button[type="submit"]:focus {
+    border: none;
+    outline: none;
+}
+
+.modal--inicio-sesion .modal-footer {
+    padding: 0;
+}
+
+/**
+ * tarjeta de perrito perdido / encontrado
+ */
+ .tarjeta--perrrito-perdido {
+    border-radius: 2px;
+ }
+ .tarjeta--perrrito-perdido .tarjeta__titulo img {
+    border-radius: 50%;
+ }
+ .tarjeta--perrrito-perdido .tarjeta__titulo span {
+    margin-left: 0.5em;
+ }
+ .tarjeta--perrrito-perdido .tarjeta__descripcion {
+    padding: 0.5em 1em;
+}
+ .tarjeta--perrrito-perdido .tarjeta__descripcion p {
+    padding-bottom: 0.5em;
+}
+ .tarjeta--perrrito-perdido .tarjeta__descripcion .direccion {
+    color: var(--color-logo-verde);
+}
+ .tarjeta--perrrito-perdido .tarjeta__descripcion .caracteristicas {
+    margin-bottom: 0.5em;
+}
+ .tarjeta--perrrito-perdido .tarjeta__descripcion .caracteristicas p {
+    font-weight: 500;
+}
+ .tarjeta--perrrito-perdido .tarjeta__descripcion .caracteristicas .caracteristica {
+    background: var(--color-gris);
+    padding: 0.3em 0.5em;
+    display: inline-block;
+    color: #666666;
+}
+ .tarjeta--perrrito-perdido .tarjeta__descripcion .caracteristicas .contacto {
+    padding: 0.3em 0.5em;
+    display: block;
+    color: #666666;
+    text-decoration: none;
+}

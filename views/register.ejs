@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HELP-PET</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/base.css">
+        <link rel="stylesheet" href="css/componentes.css">
+        <link rel="stylesheet" href="css/estilos.css">
+        <link href="css/register.css" rel="stylesheet">
+        <script src="https://use.fontawesome.com/fcfd0a87ec.js"></script>
+    </head>
+    <body>
+        <div class="register">
+                <!-- INICIO del menu -->
+                <nav class="navbar">
+                    <div class="navbar__logo">
+                        <img src="img/ico-logo.png" alt="logo helpet">
+                    </div>
+                    <ul class="navbar__menu">
+                        <li>
+                            <button type="button" onclick="abrirModal('modalIniciarSesion')">Inicia</button>
+                        </li>
+                        <li>
+                            <a href="registro.html">Regístrate</a>
+                         </li>
+                    </ul>
+                </nav>
+                <!-- FIN del menu -->
+                <!-- INICIO cuerpo -->
+                <section class="cont cont--register">
+                    <ul class="register">
+                        <h3>REGISTRARSE</h3>
+                        <div>
+                            <form action="" id="register-form">
+                                <div class="form-input">
+                                    <input type="text" name="name" placeholder="Nombre" id="inputNombre">
+                                </div>
+                                <div class="form-input input--register">
+                                    <input type="text" name="lastname" placeholder="Apellido" id="inputApellido">
+                                    <input type="Numer" name="phone"  placeholder="Telefono" id="inputWhatsapp">
+                                </div>
+                                <div class="form-input">
+                                    <input type="Email" name="email" placeholder="Correo" id="inputEmail">
+                                </div>
+                                <div class="form-input">
+                                    <input type="Password" name="password" placeholder="Contraseña" id="inputpassword">
+                                </div>
+                                <div class="form-submit">
+                                    <button class="frm--btm" type="submit">Aceptar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </ul>
+                    <div class="redes">
+                        <figure class="figure">
+                            <img src="img/icon-register.png" alt="icono-register">
+                        </figure>
+                        <div class="iconos">
+                              <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+                              <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                              <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </section>
+                <!-- FIN del cuerpo -->
+        </div>
+        <script src="js/register.js"></script>
+        
+    </body>
+</html>

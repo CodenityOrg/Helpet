@@ -1,0 +1,57 @@
+<script src="js/looklogin.js"></script>
+<script src="js/lookregister.js"></script>
+<script src="js/lookpost.js"></script>
+<script src="js/mainfun.js"></script>
+<script src="js/seltc.custom.js"></script>
+    <script>
+        var seltc = new Seltc();
+        console.log(seltc);
+    </script>
+<script>
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: -18.0228643,lng:-70.317588},
+        zoom: 15
+        });
+
+        var infoWindow = new google.maps.InfoWindow({map: map});
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            //infoWindow.setPosition(pos);
+            var marker = new google.maps.Marker({
+              position: pos,
+              map: map,
+              draggable:true
+            },
+            
+          );
+            //infoWindow.setContent('Location found.');
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+        debugger;
+    }
+
+    function handlelocationError(browerHasGeolocation, infoWindow, pos){
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browerHasGeolocation ?
+        'Error: La GEOLOCATION del servicio falla':'Error: Tu navergador no soporta GEOLOCATION');
+    }
+
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTc7wYapoNbsbvZQT9FvsUe6-sGfMigz0&callback=initMap">
+</script>
