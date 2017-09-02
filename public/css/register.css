@@ -12,7 +12,7 @@ li{
 }
 body {
     min-height: 100vh;
-    background: #00d455;
+    background: rgba(33, 177, 106, 1);
     background-position: center;
     background-size: cover;
     position: relative;
