@@ -184,7 +184,13 @@ body {
     border: none;
     background: none;
 }
-
+.navbar_nombre {
+    width: 5em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin: 0 0.9em -0.3em 0;
+}
 /**
  * navbar modificado para la pagina de inicio
  */
