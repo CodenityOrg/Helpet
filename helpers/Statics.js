@@ -1,11 +1,10 @@
-var fs = require('fs');
+const fs = require('fs');
 
 module.exports = {
-	
-	read : function(file,cb) {
+	read (file,cb) {
 		fs.readFile('./public/'+file, cb);
 	},
-	readView : function(file,cb) {
+	readView (file,cb) {
 		fs.readFile('./views/'+file, cb);
 	}
 }

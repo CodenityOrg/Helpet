@@ -1,13 +1,11 @@
-let Feature = require('../model/Feature');
+"use strict";
+const Feature = require("../model/Feature");
 
 module.exports = {
-    getForQuery(req,res){
-        let q = req.query.q;
-        Feature.find({ name: new RegExp(q,"i") })
-            .then((features)=>res.send(JSON.stringify(features),200))
-            .catch((err)=>{
-                console.log(err)
-                return res.send(null,503);
-            })
+    getForQuery(req,res) {
+        const q = req.query.q;
+        Feature.find({ name: new RegExp(q, "i") })
+            .then(features => res.send(JSON.stringify(features),200))
+            .catch((err) => res.send(null,503));
     }
 }

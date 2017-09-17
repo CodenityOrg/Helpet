@@ -60,7 +60,7 @@ db.connect(()=>{
     var fCreate = []
 
     posts.forEach((post)=>{
-        var userId = Math.floor((Math.random()*2)+1); 
+        var userId = "59ab1cf528ebef7de4d8860a"; 
         var type = Math.floor((Math.random()*1)+0);
         var photoIndex = Math.floor((Math.random()*2)+0);
         post.latitude -= ((Math.random()*10)+9)/100;

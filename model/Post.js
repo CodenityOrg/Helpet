@@ -1,19 +1,11 @@
-var bcrypt = require('bcrypt');
-var db = require('../db/con.js').db;
-var posts = db.collection('posts')
+const bcrypt = require("bcrypt");
+const db = require("../db/con.js").db;
+const posts = db.collection("posts")
 
-module.exports.create = function(data) {
+module.exports.create = (data) => {
 
-  let post = {
-    userId: data.userId,
-    photo: data.photo,
-    description:data.description,
-    feature: data.feature,
-    latitude: data.latitude,
-    longitude: data.longitude,
-    distance : data.distance,
-    type: data.type
-  };
+  let { userId, photo, description, features, latitude, longitude, distance, type} = data;
+  let post = { userId, photo, description, features, latitude, longitude, distance, type };
 
   return new Promise((resolve,reject)=>{
     posts.insert(post,resolve);
@@ -23,39 +15,23 @@ module.exports.create = function(data) {
   });
 }
 
-module.exports.find = function(data,limit){
+module.exports.find = (data,limit) => {
   if(limit) return posts.find(data).limit(limit).toArray();
   return posts.find(data).toArray();
 }
 
-
-module.exports.remove = function(data) {  
-  
+module.exports.remove = (data) => {  
   posts.remove({});
-
 }
 
-module.exports.getOne = function(id,callback){
+module.exports.getOne = (id,callback) => {
+  const objectId = new ObjectID(id);
 
-  var objectId = new ObjectID(id);
-
-  return new Promise((resolve,reject)=>{
-    posts.findOne({_id:objectId},resolve)
-  }).then((err,posts)=>{
+  return new Promise((resolve, reject)=>{
+    posts.findOne({_id: objectId },resolve)
+  }).then((err, posts)=>{
       if(err) throw err;
       return posts;
-  })
-
-  // posts.findOne({_id:objectId},function (err,post) {
-  //   if (err) {
-  //       callback(err);
-  //   }
-  //   if (!post) {
-  //       callback(null);
-  //   }
-  //   console.log(post)
-  //   callback(null,post);
-
-  // });
+  });
 
 };

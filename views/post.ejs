@@ -38,12 +38,12 @@
         <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
         <script src="js/mapbox.view.js"></script>
         <script>
-            var mapboxView = new MapboxView('map');
+            const mapboxView = new MapboxView('map');
             mapboxView.initAddMarkerEvent();
         </script>
         <script type="text/javascript" src="js/seltc.custom.js"></script>
         <script>
-            var seltc = new Seltc({
+            const seltc = new Seltc({
                 url:"/features/list"
             });
         </script>

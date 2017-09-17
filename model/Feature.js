@@ -1,9 +1,10 @@
 var bcrypt = require('bcrypt');
-var mongodb = require('mongodb');
-var ObjectID = mongodb.ObjectID;
+"use strict";
+const mongodb = require('mongodb');
+const ObjectID = mongodb.ObjectID;
 
-var db = require('../db/con.js').db;
-var features = db.collection('features')
+const db = require('../db/con.js').db;
+const features = db.collection('features')
 
 module.exports = {
     create(data) {
