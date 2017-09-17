@@ -24,8 +24,9 @@
         <section class="cont cont--inicio">
         <!-- inicio de formulario -->
             <div class="cont--formulario">
-                <% include ./include/partials/post %>
-
+                <form id="post-form">
+                    <% include ./include/partials/post %>
+                </form>
             </div>
         <!-- Final de formulario -->
         <!-- Inicio del mapa -->
@@ -37,15 +38,20 @@
         
         <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
         <script src="js/mapbox.view.js"></script>
+        <script type="text/javascript" src="js/seltc.custom.js"></script>
+        <script type="text/javascript"  src="js/posts.js"></script>
         <script>
             const mapboxView = new MapboxView('map');
             mapboxView.initAddMarkerEvent();
-        </script>
-        <script type="text/javascript" src="js/seltc.custom.js"></script>
-        <script>
+            let PostsView = new PostView();
             const seltc = new Seltc({
                 url:"/features/list"
             });
+
+            document.getElementById("post-form").onsubmit = function (e){
+                e.preventDefault();
+                PostsView.create(this);
+            }
         </script>
 
 

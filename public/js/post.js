@@ -1,4 +1,4 @@
-var post = {
+const POST = {
 	
 	create: function(data) {
 		var xhttp = new XMLHttpRequest();
