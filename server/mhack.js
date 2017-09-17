@@ -52,19 +52,22 @@ module.exports = (function(req,res){
                     this.end();
                 }
         
-                if(["POST","PUT"].indexOf(req.method)>=0){
-            
-                    req.on('data', function (chunk) {
-                        body += String(chunk);
-                    });
-                    req.on('end', function () {
-                        if(body&& !(body instanceof Object))	req.body = JSON.parse(body);
+                if (["POST","PUT"].indexOf(req.method) >= 0) {
+                    
+                    if (req.headers["content-type"].indexOf("multipart/form-data") < 0){
+                        req.on('data', function (chunk) {
+                            body += String(chunk);
+                        });
+                        req.on('end', function () {
+                            if(body&& !(body instanceof Object))	req.body = JSON.parse(body);
+                            router.check(pathname,req,res);
+                        });
+                    } else {
                         router.check(pathname,req,res);
-                    });
+                    }
         
                     return;
-                }else{
-                    
+                } else {
                     req.query = url.parse(req.url,true).query;
                     router.check(pathname,req,res);
                 }

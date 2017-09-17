@@ -3,9 +3,9 @@ const db = require("../db/con.js").db;
 const posts = db.collection("posts")
 
 module.exports.create = (data) => {
-
   let { userId, photo, description, features, latitude, longitude, distance, type} = data;
   let post = { userId, photo, description, features, latitude, longitude, distance, type };
+  post.createdAt = new Date();
 
   return new Promise((resolve,reject)=>{
     posts.insert(post,resolve);
