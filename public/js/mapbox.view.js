@@ -109,7 +109,9 @@ var MapboxView = (function(container){
                     let coordinates = [res.results[0].geometry.location.lng,res.results[0].geometry.location.lat]
                 })
                 .then(this.createNewMarker)
-            
+        },
+        getCurrentMarker(){
+            return marker;
         }
 
     }

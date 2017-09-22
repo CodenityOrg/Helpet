@@ -17,6 +17,8 @@
         <script src="https://use.fontawesome.com/fcfd0a87ec.js"></script>
     </head>
     <body>
+        <div id="snackbar">Some text some message..</div>
+
         <!-- Inicio de menu -->
         <% include ./include/partials/nav %>
 
@@ -41,19 +43,43 @@
         <script type="text/javascript" src="js/seltc.custom.js"></script>
         <script type="text/javascript"  src="js/posts.js"></script>
         <script>
-            const mapboxView = new MapboxView('map');
+            const mapboxView = new MapboxView("map");
             mapboxView.initAddMarkerEvent();
+
             let PostsView = new PostView();
+
             const seltc = new Seltc({
                 url:"/features/list"
             });
 
             document.getElementById("post-form").onsubmit = function (e){
                 e.preventDefault();
-                PostsView.create(this);
+                const currentMarker = mapboxView.getCurrentMarker();
+
+                if(!currentMarker) return showSnackBar("Por favor, seleccione una ubicacion en el mapa");
+
+                const { lat, lng } = currentMarker._lngLat;
+
+                const features = seltc[0].selectedOptions;
+                if(!features.length) return showSnackBar("Por favor, seleccione algunas caracteristicas");
+
+                const featuresId = seltc[0].selectedOptions.map(item => item.id);
+                
+                const data = {
+                    latitude: lat,
+                    longitude: lng,
+                    featuresId
+                };
+
+                PostsView.create(this, data);
+            }
+
+            function showSnackBar(message) {
+                const snackbar = document.getElementById("snackbar");
+                snackbar.innerHTML = message;
+                snackbar.className = "show";
+                setTimeout(function(){ snackbar.className = snackbar.className.replace("show", ""); }, 6000);
             }
         </script>
-
-
     </body>
 </html>

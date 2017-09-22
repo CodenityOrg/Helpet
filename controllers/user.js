@@ -41,7 +41,9 @@ module.exports = {
 		return res.send(null,401);
 	},
 	logout: function(req,res){
-		req.session.forget("userId");
+
+		req.session.set("userId", "");
+		console.log(req.session.get("userId"));
 		res.writeHead(301,
 			{ Location: "/"}
 		);

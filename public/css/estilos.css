@@ -283,7 +283,7 @@ body {
 .cont--inicio .cont--mapa {
     min-height: 100vh;
     flex: 0 0 65%;
-    padding-top:2em;
+    padding-top:6em;
 }
 .cont--inicio .cont--mapa #map {
     width: 65%;

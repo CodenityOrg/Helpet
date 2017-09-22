@@ -51,8 +51,12 @@ let PostView = (function(){
             })
     }
 
-    var create = function(form){
+    const create = function(form, data){
         const formData = new FormData(form);
+        
+        formData.append("features", data.features);
+        formData.append("latitude", data.latitude);
+        formData.append("longitude", data.longitude);
 
         fetch("post",{
             method: "POST",

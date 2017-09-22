@@ -1,9 +1,6 @@
 document.addEventListener('onready',function() {
-
-	var ws = new WebSocket("ws://localhost:8080/", "protocolOne");
-
+	const ws = new WebSocket(`ws://${location.host}`, "protocolOne");
 	ws.onmessage = function(event) {
-
 		var msg = JSON.parse(event.data);
 		var notification = document.getElementById("notification").contentDocument;
 
@@ -19,11 +16,19 @@ document.addEventListener('onready',function() {
 					title: 'Se busca'
 				});
 
+				if (Notification.permission !== "granted")
+					Notification.requestPermission();
+				else {
+					var notification = new Notification(msg.title, {
+						icon: msg.photo,
+						body: msg.description,
+					});
+
+					notification.onclick = function () {
+						window.open("http://stackoverflow.com/a/13328397/1269037");      
+					};
+				}
 				break;
 		}
-		if (text.lenth) {
-			notification.write(text);
-		}
 	}
-
-})
+});
