@@ -1,24 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
-        <title>HELPET - perdido</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- estilos -->
-        <link rel="stylesheet" href="css/base.css">
-        <link rel="stylesheet" href="css/componentes.css">
-        <link rel="stylesheet" href="css/estilos.css">
+        <% include ./include/partials/head %>
         <link rel="stylesheet" href="css/perdido.css">
         <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />
         <!-- scripts -->
         <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
-        <script src="js/main.js"></script>
         <link rel="stylesheet" href="css/seltc.css">
         <script src="https://use.fontawesome.com/fcfd0a87ec.js"></script>
     </head>
     <body>
-        <div id="snackbar">Some text some message..</div>
-
+        <div id="snackbar"></div>
         <!-- Inicio de menu -->
         <% include ./include/partials/nav %>
 
@@ -37,32 +29,25 @@
             </div>
         <!-- Final del mapa -->
         </section>
-        
         <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
+        <script src="js/main.js"></script>
         <script src="js/mapbox.view.js"></script>
-        <script type="text/javascript" src="js/seltc.custom.js"></script>
+        <script type="text/javascript" src="js/lib/seltc.custom.js"></script>
         <script type="text/javascript"  src="js/posts.js"></script>
         <script>
             const mapboxView = new MapboxView("map");
             mapboxView.initAddMarkerEvent();
-
-            let PostsView = new PostView();
-
+            const PostsView = new PostView();
             const seltc = new Seltc({
                 url:"/features/list"
             });
-
             document.getElementById("post-form").onsubmit = function (e){
                 e.preventDefault();
                 const currentMarker = mapboxView.getCurrentMarker();
-
                 if(!currentMarker) return showSnackBar("Por favor, seleccione una ubicacion en el mapa");
-
                 const { lat, lng } = currentMarker._lngLat;
-
                 const features = seltc[0].selectedOptions;
                 if(!features.length) return showSnackBar("Por favor, seleccione algunas caracteristicas");
-
                 const featuresId = seltc[0].selectedOptions.map(item => item.id);
                 
                 const data = {

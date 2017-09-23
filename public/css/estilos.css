@@ -270,6 +270,7 @@ body {
     padding-top: 0;
     display: flex;
     background-color: var(--color-gris);
+    padding-top: 4.5em;
 }
 
 .cont--inicio .cont--tarjetas {
@@ -283,7 +284,7 @@ body {
 .cont--inicio .cont--mapa {
     min-height: 100vh;
     flex: 0 0 65%;
-    padding-top:6em;
+    padding-top:2em;
 }
 .cont--inicio .cont--mapa #map {
     width: 65%;

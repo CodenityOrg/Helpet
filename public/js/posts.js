@@ -1,8 +1,7 @@
-let PostView = (function(){
-
+const PostView = (function(){
     "use strict";
 
-    var renderList = function () {
+    const renderList = function () {
         const cardsContainer = document.getElementById("tab-perdidos");
         const cardBodyTemplate = 
             '<div class="tarjeta__titulo">'+
@@ -65,6 +64,42 @@ let PostView = (function(){
         }).then(response => {
 
         });
+    }
+
+    const createPostsTabView = () => {
+        if (idTab == 'perdidos') {
+            var linkOcultar = document.getElementById('showTab-encontrados');
+            var tabOcultar = document.getElementById('tab-encontrados');
+        } else {
+            var linkOcultar = document.getElementById('showTab-perdidos');
+            var tabOcultar = document.getElementById('tab-perdidos');
+        }
+    
+        var linkMostrar = document.getElementById('showTab-' + idTab);
+        var tabMostrar = document.getElementById('tab-' + idTab);
+    
+        linkMostrar.className = 'tab-link active';
+        tabMostrar.className = '';
+        linkOcultar.className = 'tab-link';
+        tabOcultar.className = 'oculto';
+    }
+
+    const savePreference = () => {
+        // var photos = getPhotos();
+        // data.append('photo', photos);
+        // data.append('feature', formdata.feature.value);
+        // data.append('latitude', formdata.latitude.value);
+        // data.append('longitude', formdata.longitude.value);
+        // data.append('distance', formdata.distance.value);
+        // data.append('type', formdata.type.value);
+    
+        // var xhr = new XMLHttpRequest();
+        // xhr.open('POST', 'user/preference', true);
+        // xhr.onload = function () {
+    
+        //   console.log("BUSQUEDA GUARDADA");
+        // };
+        // xhr.send(data);
     }
 
     return {

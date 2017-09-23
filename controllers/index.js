@@ -11,7 +11,6 @@ module.exports = {
 		const userId = req.session.get("userId");
 		const user = {};
 		const pathname = url.parse(req.url).pathname;
-		console.log('Entro aqui');
 		if (!userId) return res.render("index", { user:null, path: pathname });
 		res.writeHead(301,
 			{ Location: "/mapa"}

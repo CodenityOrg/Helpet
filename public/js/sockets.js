@@ -1,4 +1,4 @@
-document.addEventListener('onready',function() {
+document.addEventListener("onready",function() {
 	const ws = new WebSocket(`ws://${location.host}`, "protocolOne");
 	ws.onmessage = function(event) {
 		var msg = JSON.parse(event.data);
@@ -7,19 +7,19 @@ document.addEventListener('onready',function() {
 		switch(msg.type){
 
 			case "post":
-				var marker = new google.maps.Marker({
+				const marker = new google.maps.Marker({
 					position: {
 						latitude : msg.latitude,
 						longitude : msg.longitude
 					},
 					map: map,
-					title: 'Se busca'
+					title: "Se busca"
 				});
 
 				if (Notification.permission !== "granted")
 					Notification.requestPermission();
 				else {
-					var notification = new Notification(msg.title, {
+					const notification = new Notification(msg.title, {
 						icon: msg.photo,
 						body: msg.description,
 					});
