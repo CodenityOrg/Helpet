@@ -10,7 +10,6 @@ const app = mHack();
 
 const db = require('./db/con.js');
 db.connect();
-
 app.use(index);
 
 const serv = http.createServer(app.server);

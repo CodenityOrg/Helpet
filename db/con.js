@@ -1,16 +1,34 @@
 const mongodb   = require("mongodb");
-const ObjectID  = mongodb.ObjectID;
+const MongoClient = mongodb.MongoClient;
+const configDB = require("../config").db;
 
-const host   = process.env.hostDB || "127.0.0.1";
-const port   = process.env.portDB || 27017;
-const dbName = process.env.db   || "helpetdb";
+const env = process.env.NODE_ENV;
 
-const dbserver = new mongodb.Server(host, port, {});
-const db = new mongodb.Db(dbName, dbserver);
+let host   = "127.0.0.1";
+let port   = 27017;
+let dbName = "helpetdb";
+let user = "";
+let password = "";
+
+if (env === "production") {
+    host = configDB.host;
+    port = configDB.port;
+    dbName = configDB.db;
+    user = configDB.user;
+    password = configDB.password;
+}
 
 module.exports = {
-    connect(cb){
-       db.open(cb); 
-    },
-    db: db
+    connect() {
+        let credentials = "";
+        if (process.env.NODE_ENV === "production") {
+            credentials = `${user}:${password}@`;
+        }
+        MongoClient.connect(`mongodb://${credentials}${host}:${port}/${dbName}`, (err, mDb) => {
+            if(!err) {
+                console.log("We are connected");
+            }
+            global.db = mDb;
+        });
+    }
 };
