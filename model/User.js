@@ -1,10 +1,11 @@
+"use strict";
 const bcrypt = require("bcrypt");
 const mongodb = require("mongodb");
 const ObjectID = mongodb.ObjectID;
-const db = require("../db/con.js").db;
-const users = db.collection('users');
+const connection = require("../db/con.js");
 
 module.exports.login = (data) => {
+  const users = global.db.collection("users");
   return users.findOne({ email: data.email }).then((user) => {
     if(!user) throw "No existe el usuario";
     const checked = bcrypt.compareSync(data.password, user.password);
@@ -14,6 +15,7 @@ module.exports.login = (data) => {
 };
 
 module.exports.register = (data) => {
+  const users = global.db.collection("users");
   const hash = bcrypt.hashSync(data.password, 8);
   let { _id, email, password, name, lastname, phone } = data;
   let user = { _id, email, password, name, lastname, phone };
@@ -25,11 +27,12 @@ module.exports.register = (data) => {
 };
 
 module.exports.findOne = (data) => {
+  const users = global.db.collection("users");
   return users.findOne(data);
 };
 
-module.exports.getOne = function(id){
+module.exports.getOne = (id) => {
+  const users = global.db.collection("users");
   const objectId = new ObjectID(id);
   return users.findOne({ _id:objectId });
 }
-
