@@ -1,8 +1,10 @@
+"use strict";
 const bcrypt = require("bcrypt");
-const db = require("../db/con.js").db;
-const posts = db.collection("posts")
+const connection = require("../db/con.js");
+
 
 module.exports.create = (data) => {
+  const posts = global.db.collection("posts");
   let { userId, photo, description, features, latitude, longitude, distance, type} = data;
   let post = { userId, photo, description, features, latitude, longitude, distance, type };
   post.createdAt = new Date();
@@ -16,6 +18,8 @@ module.exports.create = (data) => {
 }
 
 module.exports.find = (data,limit) => {
+  const posts = global.db.collection("posts");
+  
   if(limit) return posts.find(data).limit(limit).toArray();
   return posts.find(data).toArray();
 }
@@ -25,10 +29,11 @@ module.exports.remove = (data) => {
 }
 
 module.exports.getOne = (id,callback) => {
+  const posts = global.db.collection("posts");
   const objectId = new ObjectID(id);
 
   return new Promise((resolve, reject)=>{
-    posts.findOne({_id: objectId },resolve)
+      posts.findOne({_id: objectId },resolve)
   }).then((err, posts)=>{
       if(err) throw err;
       return posts;
