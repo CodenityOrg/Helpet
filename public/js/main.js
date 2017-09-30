@@ -24,26 +24,7 @@ function cerrarModal(btnCerrar) {
 /**
  * tabs de perridos perdidos y encontrados
  */
-function mostrarTab(idTab) {
-    if (idTab == 'perdidos') {
-        var linkOcultar = document.getElementById('showTab-encontrados');
-        var tabOcultar = document.getElementById('tab-encontrados');
 
-    } else {
-        var linkOcultar = document.getElementById('showTab-perdidos');
-        var tabOcultar = document.getElementById('tab-perdidos');
-
-
-    }
-
-    var linkMostrar = document.getElementById('showTab-' + idTab);
-    var tabMostrar = document.getElementById('tab-' + idTab);
-
-    linkMostrar.className = 'tab-link active';
-    tabMostrar.className = '';
-    linkOcultar.className = 'tab-link';
-    tabOcultar.className = 'oculto';
-}
 
 window.addEventListener("scroll", function() {
     if (this.scrollY == 0) {
@@ -56,43 +37,6 @@ window.addEventListener("scroll", function() {
     }
 }, false);
 
-function renderPostView() {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(data) {
-        if (xhr.readyState == 4 && xhr.status === 200) {
-            document.getElementsByClassName("content")[0].innerHTML = xhr.responseText;
-        }
-    };
-    xhr.open('GET', '/post/view', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-
-    xhr.send();
-}
-
-function renderListPostView() {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(data) {
-        if (xhr.readyState == 4 && xhr.status === 200) {
-            document.getElementsByClassName("content")[0].innerHTML = xhr.responseText;
-        }
-    };
-    xhr.open('GET', '/post/list/view', true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-
-    xhr.send();
-}
-
-var newPostBtn = document.getElementById("new-post");
-if (newPostBtn) {
-    newPostBtn.onclick = function(e) {
-        e.preventDefault();
-        var stateObj = { post: "post" };
-        history.pushState(stateObj, "post", "/publicacion");
-        renderPostView();
-        return false;
-    }
-
-}
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -119,12 +63,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
-
-window.addEventListener("hashchange", function () {
-    window.scrollTo(window.scrollX, window.scrollY - 150);
-});
-
-
-// window.onpopstate = function(event) {
-//     alert("location: " + document.location + ", state: " + JSON.stringify(event.state));
-// };

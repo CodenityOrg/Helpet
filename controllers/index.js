@@ -11,13 +11,11 @@ module.exports = {
 		const userId = req.session.get("userId");
 		const user = {};
 		const pathname = url.parse(req.url).pathname;
-		if (!userId) {
-			return res.render("index", { user:null, path: pathname });
-		}
-		User.getOne(userId)
-			.then( (user) =>{
-				res.render("index",{ user:user, path:pathname });
-			}).catch( e => console.log(e));
+		if (!userId) return res.render("index", { user:null, path: pathname });
+		res.writeHead(301,
+			{ Location: "/mapa"}
+		);
+		res.end();
 	},
 	mapView (req,res){
 		const pathname = url.parse(req.url).pathname;
@@ -77,6 +75,12 @@ module.exports = {
 		const pathname = url.parse(req.url).pathname;
 		const userId = req.session.get("userId");
 
+		if(!userId){ 
+			res.writeHead(301,
+				{ Location: "/"}
+			);
+			return res.end();
+		}
 		User.getOne(userId)
 			.then((result) => res.render("post", { user: result, path: pathname }) );
 	}

@@ -1,12 +1,11 @@
 var MapboxView = (function(container){
-    'use strict'
-    let accessToken = 'pk.eyJ1IjoiYWx2YXJvcyIsImEiOiJjajRscnh3ZnUwdXFtMndwbHpwdHFqaW9sIn0.YDgJf3xebDmAfj6ymknoUw';
-    
+    "use strict";
+    const accessToken = "pk.eyJ1IjoiYWx2YXJvcyIsImEiOiJjajRscnh3ZnUwdXFtMndwbHpwdHFqaW9sIn0.YDgJf3xebDmAfj6ymknoUw";
     mapboxgl.accessToken = accessToken;
-
-    let map = new mapboxgl.Map({
+    
+    const map = new mapboxgl.Map({
         container: container,
-        style: 'mapbox://styles/mapbox/streets-v9',
+        style: "mapbox://styles/mapbox/streets-v9",
         center: [-70.221799, -18.0031498],
         zoom: 15
     });
@@ -22,20 +21,19 @@ var MapboxView = (function(container){
     
     let marker;
 
-    let app = {
-        
+    const app = {
         getMap(){
             return map;
         },
         initAddMarkerEvent(){
-            map.on('click',(e)=>{
+            map.on("click",(e) => {
                 if(marker) marker.remove();
-                let el = document.createElement('div');
-                el.className = 'marker marker--encontrado' ;
-                el.style.width =  '48px';
-                el.style.height = '48px';
+                let el = document.createElement("div");
+                el.className = "marker marker--encontrado" ;
+                el.style.width =  "48px";
+                el.style.height = "48px";
         
-                let coordinates = [e.lngLat.lng,e.lngLat.lat];
+                let coordinates = [e.lngLat.lng, e.lngLat.lat];
 
                 marker = new mapboxgl.Marker(el, {
                         offset: [-48 / 2, -48 / 2]
@@ -45,24 +43,24 @@ var MapboxView = (function(container){
             });
         },
         fetchPostTypeMap(type = 0){
-            fetch("/mapa/json?type="+type)
-                .then((res)=>res.json())
-                .then((posts)=>{    
+            fetch(`/mapa/json?type=${type}`)
+                .then( res => res.json())
+                .then( posts => {    
                     let pointsFound = [],
                         pointFound = {};
-                    for(let i=0,post; post = posts[i];i++){
+                    for(let i = 0, post; post = posts[i]; i++) {
                         pointFound = {
-                            "type": post.type,
-                            "id": post._id,
-                            "photo": post.photo,
-                            "latitude": post.latitude,
-                            "longitude": post.longitude,
-                            "properties": {
-                                "iconSize": [48, 48]
+                            type: post.type,
+                            id: post._id,
+                            photo: post.photo,
+                            latitude: post.latitude,
+                            longitude: post.longitude,
+                            properties: {
+                                iconSize: [48, 48]
                             },
-                            "geometry": {
-                                "type": "Point",
-                                "coordinates": [post.longitude, post.latitude]
+                            geometry: {
+                                type: "Point",
+                                coordinates: [post.longitude, post.latitude]
                             }
                         }
                         pointsFound.push(pointFound);
@@ -72,15 +70,15 @@ var MapboxView = (function(container){
         },
         genLayoutMarker(data){
 
-            let el = document.createElement('div');
-            el.className = (data.type == 1) ? 'marker marker--encontrado' : 'marker marker--perdido';
-            if(data.photo) el.style.backgroundImage = 'url('+data.photo+')';
+            let el = document.createElement("div");
+            el.className = (data.type == 1) ? "marker marker--encontrado" : "marker marker--perdido";
+            if(data.photo) el.style.backgroundImage = `url(${data.photo})`;
             el.style.width = data.properties.iconSize[0]? (data.properties.iconSize[0]+ 'px'):'48px';
             el.style.height = data.properties.iconSize[1]? (data.properties.iconSize[1]+ 'px'):'48px';
     
-            if(data.id){
-                el.addEventListener('click', function() {
-                    location.hash="#"+data.id;
+            if(data.id) {
+                el.addEventListener("click", function() {
+                    location.hash = "#"+data.id;
                 });
             }
             return el;
@@ -104,16 +102,15 @@ var MapboxView = (function(container){
         },
         searchLocation(address){
             fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + address)
-                .then((res)=>res.json())
-                .then((res)=>{
+                .then((res) => res.json())
+                .then((res) => {
                     let coordinates = [res.results[0].geometry.location.lng,res.results[0].geometry.location.lat]
                 })
                 .then(this.createNewMarker)
-            
+        },
+        getCurrentMarker(){
+            return marker;
         }
-
     }
-
     return app;
-
 });

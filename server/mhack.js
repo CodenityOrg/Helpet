@@ -11,12 +11,10 @@ let session = new NodeSession({
     driver: 'file'
 });
 
-
-
 module.exports = (function(req,res){
-    var viewPath = path.join(__dirname,'..', 'views');
+    const viewPath = path.join(__dirname,'..', 'views');
 
-    let methods = {
+    const methods = {
         init(req,res){
             
             //Default template engine is EJS
@@ -41,14 +39,16 @@ module.exports = (function(req,res){
                     this.send(JSON.stringify(data));
                 }
         
-                res.send = function(file,code) {
-        
+                res.send = function(file, code) {
                     if(!code) code = 200;
-        
                     if(file){
                         this.writeHead(200,{ 'Content-Type': 'text/html' })
                         this.write(file);
+                        this.end();
+                        return;
                     }
+                    
+                    this.writeHead(code);
                     this.end();
                 }
         
@@ -76,9 +76,7 @@ module.exports = (function(req,res){
             });
         }
     }
-    
-
-    
+     
     return {
         server(req,res){
             methods.init(req,res);

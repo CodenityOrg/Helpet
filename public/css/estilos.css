@@ -270,6 +270,7 @@ body {
     padding-top: 0;
     display: flex;
     background-color: var(--color-gris);
+    padding-top: 4.5em;
 }
 
 .cont--inicio .cont--tarjetas {
