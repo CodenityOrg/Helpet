@@ -37,29 +37,3 @@ window.addEventListener("scroll", function() {
     }
 }, false);
 
-
-document.addEventListener('DOMContentLoaded', function() {
-
-    var fileInput = document.getElementById("file-image");
-    var imgSelected = document.getElementById("img-selected");
-    var addPhotoButton = document.getElementsByClassName("add-photo")[0];
-
-    if(addPhotoButton){
-        addPhotoButton.onclick = function(e) {
-            fileInput.click();
-        }    
-    }
-
-
-    if(fileInput){
-        fileInput.onchange = function(e) {
-            var reader = new FileReader();
-            var file = this.files[0];
-            reader.onload = function(e) {
-                imgSelected.src = e.target.result;
-            }
-            reader.readAsDataURL(file);
-        }
-    }
-
-});

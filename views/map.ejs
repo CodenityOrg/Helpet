@@ -11,7 +11,6 @@
     <body>
         <% include ./include/partials/nav %>
         <% include ./include/modals/login-modal %>
-
         <div class="cont cont--inicio">
             <div class="cont--tarjetas">
                 <div class="content">
@@ -22,14 +21,16 @@
                 <div id='map'></div>
             </div>
         </div>
-
         <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
         <script src="js/main.js"></script>
+        <script src="js/posts.js"></script>
         <script src="js/mapbox.view.js"></script>
         <script type="text/javascript" src="js/user.js"></script>
         <script>
             user.loginForm();
-            const mapboxView = new MapboxView('map');
+            const postView = new PostView();
+            postView.initTabs();
+            const mapboxView = new MapboxView("map");
             mapboxView.fetchPostTypeMap();
         </script>
 

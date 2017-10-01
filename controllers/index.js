@@ -36,7 +36,7 @@ module.exports = {
 
 			let fnPopulatePost = []
 			for (let i = 0, post; post = posts[i]; i++) {
-				fnPopulatePost.push(User.findOne({_id:post.userId}))
+				fnPopulatePost.push(User.findOne({_id:post.usersId}))
 			}
 			return Promise.all(fnPopulatePost);
 

@@ -1,8 +1,7 @@
+"use strict";
+
 let PostView = (function(){
-
-    "use strict";
-
-    var renderList = function () {
+    function renderList() {
         const cardsContainer = document.getElementById("tab-perdidos");
         const cardBodyTemplate = 
             '<div class="tarjeta__titulo">'+
@@ -51,7 +50,7 @@ let PostView = (function(){
             })
     }
 
-    var create = function(form){
+    function create(form){
         const formData = new FormData(form);
 
         fetch("post",{
@@ -63,8 +62,39 @@ let PostView = (function(){
         });
     }
 
+    function initTabs(){
+        const $tabs = document.getElementsByClassName("posts-tab");
+        const $tabsContent = document.getElementsByClassName("tab-content");
+
+        for (let i = 0, $tab; $tab = $tabs[i] ; i++) {
+            $tab.onclick = function(e){
+                const id = this.id;
+                const tabBody = this.getAttribute("data-tab");
+                
+                for (let j = 0, $nTab; $nTab = $tabs[j]; j++) {
+                    $nTab.className = "posts-tab tab-link";
+                }
+                this.className = "posts-tab tab-link active";
+                
+                for (let k = 0, $tabContent; $tabContent = $tabsContent[k]; k++) {
+                    if ($tabContent.id === tabBody) {
+                        $tabContent.className = "";
+                    }
+                    $tabContent.className = "oculto";
+                }
+            }
+        }
+
+    }
+
+    function initView(){
+        initTabs();
+    }
+
     return {
         create,
+        initView,
+        initTabs,
         renderList
     }
 

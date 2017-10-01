@@ -1,0 +1,22 @@
+"use strict";
+const faker = require("faker");
+const Bale = require("bale.js");
+const bale = new Bale();
+
+function roundBetween(fr, to){
+    return Math.random() * to - fr;
+}
+
+let rLatitude = [0, -18.0037809, -18.0037123, -18.0037829];
+let rLongitude = [0, -70.2530123, -70.253023, -70.2530243];
+
+let seed = bale.genSeed("posts", 20, (post) =>{
+    post.photo = faker.image.animals();
+    post.description = faker.lorem.paragraph();
+    post.latitude = rLatitude[Math.floor(Math.random() * 2 ) + 1];
+    post.longitude = rLongitude[Math.floor(Math.random() * 2 ) + 1];
+    post.type = Math.round(Math.random() * 1);
+    return post;
+}, "users");
+
+module.exports = seed;

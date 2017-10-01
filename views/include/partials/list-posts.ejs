@@ -1,12 +1,11 @@
  <div class="tab-links">
-    <button type="button" class="tab-link active" id="showTab-perdidos" onclick="mostrarTab('perdidos')">Perdidos</button>
-    <button type="button" class="tab-link" id="showTab-encontrados" onclick="mostrarTab('encontrados')">Encontrados</button>
+    <button type="button" class="tab-link active posts-tab" data-tab="tab-perdidos" id="showTab-perdidos">Perdidos</button>
+    <button type="button" class="tab-link posts-tab" data-tab="tab-encontrados" id="showTab-encontrados">Encontrados</button>
 </div>
 
-<div id="tab-perdidos" class="active">
-
-    <% for(var i=0,post; post = lostPosts[i]; i++) {%>
-        <div class="tarjeta tarjeta--perrrito-perdido" id="<%= post._id%>">
+<div id="tab-perdidos" class="tab-content active">
+    <% lostPosts.forEach(function(post) {  %>
+        <div class="tarjeta tarjeta--perrrito-perdido" id="<%= post._id %>">
             <div class="tarjeta__titulo">
                 <img src="img/placeholder.jpg" alt="foto de perfil">
                 <span><%= post.user.name %> <%= post.user.lastname %>  </span>
@@ -25,13 +24,11 @@
                 </div>
             </div>
         </div>
-    <% } %>
-    
+    <% }); %>
 </div>
 
-<div id="tab-encontrados" class="">
-    <% for(var i=0,post; post = foundPosts[i]; i++) {%>
-
+<div id="tab-encontrados" class="tab-content">
+    <% foundPosts.forEach(function(post) {  %>
         <div class="tarjeta tarjeta--perrrito-perdido" id="<%= post._id%>">
             <div class="tarjeta__titulo">
                 <img src="img/placeholder.jpg" alt="foto de perfil">
@@ -51,8 +48,5 @@
                 </div>
             </div>
         </div>
-    <% } %>
-
-    
-
+    <% }); %>
 </div>
