@@ -62,7 +62,7 @@ let PostView = (function(){
         });
     }
 
-    function initTabs(){
+    function initTabs(mapbox){
         const $tabs = document.getElementsByClassName("posts-tab");
         const $tabsContent = document.getElementsByClassName("tab-content");
 
@@ -70,18 +70,23 @@ let PostView = (function(){
             $tab.onclick = function(e){
                 const id = this.id;
                 const tabBody = this.getAttribute("data-tab");
-                
+                const type = Number(this.getAttribute("data-type"));
+
                 for (let j = 0, $nTab; $nTab = $tabs[j]; j++) {
                     $nTab.className = "posts-tab tab-link";
                 }
                 this.className = "posts-tab tab-link active";
                 
                 for (let k = 0, $tabContent; $tabContent = $tabsContent[k]; k++) {
+                    $tabContent.className = "tab-content oculto";
+                    
                     if ($tabContent.id === tabBody) {
-                        $tabContent.className = "";
+                        $tabContent.className = "tab-content active";
                     }
-                    $tabContent.className = "oculto";
                 }
+
+                mapboxView.fetchPostTypeMap(type);
+                
             }
         }
 

@@ -1,10 +1,10 @@
-var MapboxView = (function(container){
+var MapboxView = (function(opts){
     "use strict";
-    const accessToken = "pk.eyJ1IjoiYWx2YXJvcyIsImEiOiJjajRscnh3ZnUwdXFtMndwbHpwdHFqaW9sIn0.YDgJf3xebDmAfj6ymknoUw";
+    const accessToken = opts.token;
     mapboxgl.accessToken = accessToken;
     
     const map = new mapboxgl.Map({
-        container: container,
+        container: opts.el,
         style: "mapbox://styles/mapbox/streets-v9",
         center: [-70.221799, -18.0031498],
         zoom: 15
@@ -20,6 +20,7 @@ var MapboxView = (function(container){
     map.addControl(new mapboxgl.NavigationControl());
     
     let marker;
+    let currentMarkers = [];
 
     const app = {
         getMap(){
@@ -43,6 +44,7 @@ var MapboxView = (function(container){
             });
         },
         fetchPostTypeMap(type = 0){
+            this.removeAllMarkers();
             fetch(`/mapa/json?type=${type}`)
                 .then( res => res.json())
                 .then( posts => {    
@@ -90,12 +92,17 @@ var MapboxView = (function(container){
                 latitude = data.latitude || data.lat,
                 longitude = data.longitude || data.lng;
             // Create a new marker in Mapbox instance
-            console.log(this.genLayoutMarker(data))
-            new mapboxgl.Marker(this.genLayoutMarker(data), {
+            let marker = new mapboxgl.Marker(this.genLayoutMarker(data), {
                     offset: [-data.properties.iconSize[0] / 2, -data.properties.iconSize[1] / 2]
                 })
                 .setLngLat(data.geometry.coordinates)
                 .addTo(map);
+            currentMarkers.push(marker);
+        },
+        removeAllMarkers() {
+            currentMarkers.forEach((marker) => {
+                marker.remove();
+            });
         },
         clearMap(){
             map.remove();

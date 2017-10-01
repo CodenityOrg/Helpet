@@ -29,9 +29,12 @@
         <script>
             user.loginForm();
             const postView = new PostView();
-            postView.initTabs();
-            const mapboxView = new MapboxView("map");
-            mapboxView.fetchPostTypeMap();
+            const mapboxView = new MapboxView({
+                el: "map",
+                token: "pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
+            });
+            mapboxView.fetchPostTypeMap(0);
+            postView.initTabs(mapboxView);
         </script>
 
     </body>

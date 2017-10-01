@@ -7,10 +7,10 @@ function roundBetween(fr, to){
     return Math.random() * to - fr;
 }
 
-let rLatitude = [0, -18.0037809, -18.0037123, -18.0037829];
-let rLongitude = [0, -70.2530123, -70.253023, -70.2530243];
+let rLatitude = [0, -18.003809, -18.0033, -18.0037829];
+let rLongitude = [0, -70.25323, -70.2023, -70.25344];
 
-let seed = bale.genSeed("posts", 20, (post) =>{
+let seed = bale.genSeed("posts", 10, (post) =>{
     post.photo = faker.image.animals();
     post.description = faker.lorem.paragraph();
     post.latitude = rLatitude[Math.floor(Math.random() * 2 ) + 1];
