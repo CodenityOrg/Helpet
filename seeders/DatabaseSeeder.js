@@ -1,7 +1,9 @@
 "use strict";
-const userSeeder = require('./UserSeeder');
-const postSeeder = require('./PostSeeder');
-const Bale = require('bale.js');  
+const userSeeder = require("./UserSeeder");
+const postSeeder = require("./PostSeeder");
+const featureSeeder = require("./FeatureSeeder");
+
+const Bale = require("bale.js");  
 const configDB = require("../config").db;
 const env = process.env.NODE_ENV;
 const opts = {
@@ -11,7 +13,7 @@ const opts = {
 if (env === "production") {
     opts.host = configDB.host;
     opts.port = configDB.port;
-    opts.dbname = configDB.dbname;
+    opts.dbname = configDB.db;
     opts.user = configDB.user;
     opts.password = configDB.password;
 } else {
@@ -25,6 +27,7 @@ const bale = new Bale();
 bale.connect(opts).then((seeder) => {
     seeder.use(userSeeder);
     seeder.use(postSeeder);
+    seeder.use(featureSeeder);
     seeder.seed().then((msg) => {
         process.exit();
     });

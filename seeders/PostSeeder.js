@@ -13,6 +13,7 @@ let rLongitude = [0, -70.25323, -70.2023, -70.25344];
 let seed = bale.genSeed("posts", 10, (post) =>{
     post.photo = faker.image.animals();
     post.description = faker.lorem.paragraph();
+    post.address = faker.address.streetAddress();
     post.latitude = rLatitude[Math.floor(Math.random() * 2 ) + 1];
     post.longitude = rLongitude[Math.floor(Math.random() * 2 ) + 1];
     post.type = Math.round(Math.random() * 1);

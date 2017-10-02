@@ -15,12 +15,12 @@
             </div>
             <div class="tarjeta__descripcion">
                 <p class="descripcion"><%= post.description %> </p>
-                <p class="direccion">Avenida 11 cuadra 4</p>
+                <p class="direccion"><%= post.address %></p>
                 <div class="caracteristicas">
                     <p><b> Características </b> </p>
-                    <span class="caracteristica">pelo negro</span>
-                    <span class="caracteristica">oreja cortada</span>
-                    <span class="caracteristica">raza pequeña</span>
+                    <% post.features.forEach( function(feature) { %>
+                        <span class="caracteristica"><%= feature.name %></span>
+                    <% }); %>
                 </div>
             </div>
         </div>
@@ -39,12 +39,12 @@
             </div>
             <div class="tarjeta__descripcion">
                 <p class="descripcion"> <%= post.description %> </p>
-                <p class="direccion">Avenida 11 cuadra 4</p>
+                <p class="direccion"><%= post.address %></p>
                 <div class="caracteristicas">
-                    <p>Características</p>
-                    <span class="caracteristica">pelo negro</span>
-                    <span class="caracteristica">oreja cortada</span>
-                    <span class="caracteristica">raza pequeña</span>
+                    <p><b> Características </b> </p>
+                    <% post.features.forEach( function(feature) { %>
+                        <span class="caracteristica"><%= feature.name %></span>
+                    <% }); %>
                 </div>
             </div>
         </div>

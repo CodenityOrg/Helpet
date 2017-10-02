@@ -1,11 +1,10 @@
 "use strict";
-const Statics 	= require('../helpers/Statics');
-const url 		= require('url');
-const User 		= require('../model/User');
-const Post 		= require('../model/Post');
-const ejs 		= require('ejs');
-const fetch 	= require('node-fetch');
+const url 		= require("url");
+const ejs 		= require("ejs");
 
+const User 		= require("../model/User");
+const Post 		= require("../model/Post");
+const Feature   = require("../model/Feature");
 module.exports = {
 	indexView (req,res) {
 		const userId = req.session.get("userId");
@@ -19,21 +18,20 @@ module.exports = {
 	},
 	mapView (req,res){
 		const pathname = url.parse(req.url).pathname;
-		const userId = req.session.get('userId');
-		const data = {}
+		const userId = req.session.get("userId");
+		const data = {};
 		
 		data.path = pathname;
 		
-		const lostPosts = Post.find({type:0},10);
-		const foundPosts = Post.find({type:1},10);
+		const lostPosts = Post.find({ type : 0 }, 10);
+		const foundPosts = Post.find({ type : 1 }, 10);
 
 		Promise.all([
 			lostPosts,
 			foundPosts
-		]).then(([ posts,foundPosts ])=>{
+		]).then(([ posts,foundPosts ]) => {
 			posts.push(...foundPosts);
 			data.posts = posts;
-
 			let fnPopulatePost = []
 			for (let i = 0, post; post = posts[i]; i++) {
 				fnPopulatePost.push(User.findOne({_id:post.usersId}))
@@ -41,21 +39,56 @@ module.exports = {
 			return Promise.all(fnPopulatePost);
 
 		}).then((users) => {
-			let posts = data.posts.map((post,index)=>{
+			let posts = data.posts.map((post, index) => {
 				post.user = users[index];
 				return post;
 			});
 
-			let lostPosts = [],
-				foundPosts = [];
+			let lostPosts = [];
+			let foundPosts = [];
 			
-			for (var i = 0,post; post = posts[i]; i++) {
-				if (post.type === 0) lostPosts.push(post);
-				else foundPosts.push(post);
+			for (let i = 0, post; post = posts[i]; i++) {
+				if (post.type === 0) {
+					lostPosts.push(post);
+				}
+				else {
+					foundPosts.push(post);
+				}
 			}
+
+			return [lostPosts, foundPosts];
+			
+		})
+		.then(([lostPosts, foundPosts]) => {
+			let fnFeatures = [];
+			lostPosts.forEach( (post) => {
+				fnFeatures.push(Feature.find({ postsId: post._id }));
+			});
+			return Promise.all([lostPosts, foundPosts, Promise.all(fnFeatures)]);
+		})
+		.then(([lostPosts, foundPosts, lostFeatures]) => { 
+			let fnFeatures = [];
+			foundPosts.forEach( (post) => {
+				fnFeatures.push(Feature.find({ postsId: post._id }));
+			});
+			return Promise.all([lostPosts, foundPosts, lostFeatures, Promise.all(fnFeatures)]);
+		})
+		.then(( [lostPosts, foundPosts, lostFeatures, foundFeatures] ) => {
+			
+			lostPosts = lostPosts.map((post, index) => {
+				post.features = lostFeatures[index];
+				return post;
+			});
+
+			
+			foundPosts = foundPosts.map((post, index) => {
+				post.features = foundFeatures[index];
+				return post;
+			});
 
 			data.lostPosts = lostPosts;
 			data.foundPosts = foundPosts;
+
 			data.user = null;
 			if (!userId) {
 				return res.render("map",data);
@@ -63,7 +96,7 @@ module.exports = {
 			User.getOne(userId)
 				.then((user) => {
 					data.user = user;
-					return res.render("map",data);
+					return res.render("map", data);
 				});
 		});
 	},
