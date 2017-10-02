@@ -17,14 +17,13 @@ module.exports = {
 		
 		if (!data.email) return res.send(null,401);
 		if (!data.password) return res.send(null,401);
-
 		User.login(data)
 			.then((user) => {
 				req.session.set("userId", user._id);
 				return res.send();
 			})
 			.catch((err) => {
-				return res.send(null,503);
+				return res.send(null, 401);
 			});
 	},
 	savePreferences(req,res){

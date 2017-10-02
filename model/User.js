@@ -17,7 +17,8 @@ module.exports.login = (data) => {
 module.exports.register = (data) => {
   const users = global.db.collection("users");
   const hash = bcrypt.hashSync(data.password, 8);
-  let { _id, email, password, name, lastname, phone } = data;
+  const password = hash;
+  let { _id, email, name, lastname, phone } = data;
   let user = { _id, email, password, name, lastname, phone };
   return new Promise((resolve,reject)=> users.insert(user,resolve))
               .then((err,result)=>{
