@@ -77,19 +77,6 @@ module.exports = {
 		const type = req.query.type;
 		Post.find({ type: Number(type) })
 			.then((posts) => {
-				let fnFeatures = [];
-				posts.forEach( (post) => {
-					fnFeatures.push(Feature.find({ postsId: post._id }));
-				});
-				return Promise.all([posts, Promise.all(fnFeatures)]);
-			})
-			.then(([posts, features]) => {
-				let nPosts = posts.map((post, index)=> {
-					post.features = features[index];
-				})
-				return nPosts;
-			})
-			.then((posts) => {
 				return res.send(JSON.stringify(posts));
 			})
 	}
