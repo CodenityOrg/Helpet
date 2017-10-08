@@ -2,11 +2,17 @@
 <html lang="es">
     <head>
         <% include ./include/partials/head %>
-        <link href="css/dist/register.css" rel="stylesheet">
+        <link href="dist/css/register.css" rel="stylesheet">
         <script src="https://use.fontawesome.com/fcfd0a87ec.js"></script>
+        <style>
+            .g-recaptcha div{
+                width:100% !important;
+            }
+        </style>
     </head>
     <body>
         <% include ./include/modals/login-modal %>
+        <div id="snackbar"></div>
 
         <div class="register">
             <!-- INICIO del menu -->
@@ -47,7 +53,7 @@
                             <div class="form-input">
                                 <input type="password" name="password" placeholder="Contraseña">
                             </div>
-                            <div class="g-recaptcha" data-sitekey="6Ld2lDMUAAAAAAANVdV6YEsvi8xehx9NmXK8Ce8a"></div>
+                            <div id="recaptcha" class="g-recaptcha"></div>
                             <div class="form-submit">
                                 <button class="btn btn-regular" type="submit">Aceptar</button>
                             </div>
@@ -68,11 +74,19 @@
             </section>
                 <!-- FIN del cuerpo -->
         </div>
-        <script src="js/dist/user.js"></script>
+        <script type="text/javascript" src="dist/js/main.min.js"></script>
+        <script src="dist/js/user.min.js"></script>
         <script>
             user.initLoginModal();
             user.registerForm();
         </script>
-        <script src="https://www.google.com/recaptcha/api.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"></script>
+        <script>
+            var onloadCallback = function() {
+                grecaptcha.render('recaptcha', {
+                    'sitekey' : '6Ld2lDMUAAAAAAANVdV6YEsvi8xehx9NmXK8Ce8a'
+                });
+            };
+        </script>   
     </body>
 </html>

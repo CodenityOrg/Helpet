@@ -2,10 +2,10 @@
 <html lang="es">
     <head>
         <% include ./include/partials/head %>
-        <link rel="stylesheet" href="css/dist/perdido.css">
+        <link rel="stylesheet" href="dist/css/perdido.css">
         <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css" rel="stylesheet" />
         <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js"></script>
-        <link rel="stylesheet" href="css/dist/seltc.css">
+        <link rel="stylesheet" href="dist/css/seltc.css">
         <script src="https://use.fontawesome.com/fcfd0a87ec.js"></script>
     </head>
     <body>
@@ -29,10 +29,10 @@
         <!-- Final del mapa -->
         </section>
         <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js"></script>
-        <script src="js/dist/main.js"></script>
-        <script src="js/dist/mapbox.view.js"></script>
-        <script type="text/javascript" src="js/dist/seltc.custom.js"></script>
-        <script type="text/javascript"  src="js/dist/posts.js"></script>
+        <script type="text/javascript" src="dist/js/main.min.js"></script>
+        <script type="text/javascript" src="dist/js/mapbox.view.min.js"></script>
+        <script type="text/javascript" src="dist/js/seltc.custom.min.js"></script>
+        <script type="text/javascript" src="dist/js/posts.min.js"></script>
         <script>
             const mapboxView = new MapboxView("map");
             mapboxView.initAddMarkerEvent();

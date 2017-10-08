@@ -77,17 +77,26 @@ const user = {
             name: form.name.value,
             lastname: form.lastname.value,
             phone: form.phone.value
-        };
+        };  
+
+        if (email && password && name && lastname) {
+            return showSnackBar("Por favor complete los datos antes de continuar", "danger");
+        }
+
+        if (grecaptcha.getResponse() !== "") {
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState == 4 && xhr.status === 200) {
+                    location = "/mapa";
+                }
+            };
+            xhr.open("POST", "/user", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));    
+        } else {
+            showSnackBar("Por favor acepte el captcha antes de continuar", "danger");
+        }
       
-        const xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if(xhr.readyState == 4 && xhr.status === 200) {
-                location = "/mapa";
-            }
-        };
-        xhr.open("POST", "/user", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(JSON.stringify(data));
     }
 
 }

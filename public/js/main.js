@@ -27,13 +27,14 @@ function cerrarModal(btnCerrar) {
 
 
 window.addEventListener("scroll", function() {
-    if (this.scrollY == 0) {
-        var navbar = document.getElementsByClassName('navbar--inicio')[0];
-        navbar.className = 'navbar navbar--inicio';
-    }
-    if (this.scrollY > 0) {
-        var navbar = document.getElementsByClassName('navbar--inicio')[0];
-        navbar.className += ' z-depth-1';
+    var navbar = document.getElementsByClassName('navbar--inicio')[0];
+    if (navbar) {
+        if (this.scrollY == 0) {
+            navbar.className = 'navbar navbar--inicio';
+        }
+        if (this.scrollY > 0) {
+            navbar.className += ' z-depth-1';
+        }
     }
 }, false);
 
