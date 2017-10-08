@@ -79,7 +79,7 @@ const user = {
             phone: form.phone.value
         };  
 
-        if (email && password && name && lastname) {
+        if (!data.email || !data.password || !data.name || !data.lastname) {
             return showSnackBar("Por favor complete los datos antes de continuar", "danger");
         }
 
