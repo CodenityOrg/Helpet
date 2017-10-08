@@ -61,6 +61,8 @@ const user = {
         xhr.onreadystatechange = function (data) {
             if(xhr.readyState == 4 && xhr.status === 200) {
                 location = "/mapa";
+            } else {
+                showSnackBar("Email o contraseña incorrecta, intentelo de nuevo", "danger");
             }
         };
         xhr.open("POST", "/login", true);

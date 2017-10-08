@@ -37,3 +37,14 @@ window.addEventListener("scroll", function() {
     }
 }, false);
 
+function showSnackBar(message, type) {
+    const snackbar = document.getElementById("snackbar");
+    snackbar.innerHTML = message;
+    if (type) {
+        if (type === "danger") {
+            snackbar.style.background = "rgb(232, 78, 78)";
+        }
+    }
+    snackbar.className = "show";
+    setTimeout(function(){ snackbar.className = snackbar.className.replace("show", ""); }, 3000);
+}

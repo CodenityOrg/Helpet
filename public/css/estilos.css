@@ -101,30 +101,12 @@
 }
 
 
-/**
- * variables
- */
 
-body {
-    --bg-color-transparente: rgba(33, 177, 106, .8);
-    --color-logo-verde: rgba(33, 177, 106, 1);
-    --color-gris: #f2f2f2;
-}
-
-
-/**
- * estilos generales
- */
-
-body {
-    min-height: 100vh;
-    position: relative;
-}
 
 .filtro {
     margin: 0;
     padding: 0;
-    background: url("../img/img-fondo.png");
+    background: url("../img/background-puppy.jpg");
     background-position: center;
     background-size: cover;
     height: 100vh;
@@ -411,4 +393,8 @@ body {
     display: block;
     color: #666666;
     text-decoration: none;
+}
+
+.input-group input:nth-child(1) {
+    margin-right: 5px;
 }

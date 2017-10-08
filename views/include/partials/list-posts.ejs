@@ -4,14 +4,12 @@
 </div>
 
 <div id="tab-perdidos" class="tab-content active">
-    <% lostPosts.forEach(function(post) {  %>
+    <% lostPosts.forEach((post) => {  %>
         <div class="tarjeta tarjeta--perrrito-perdido" id="<%= post._id %>">
             <div class="tarjeta__titulo">
                 <img src="img/placeholder.jpg" alt="foto de perfil">
                 <span><%= post.user.name %> <%= post.user.lastname %>  </span>
-                <div class="form-submit">
-                    <button class="frm--btm" type="submit">Contactar</button>
-                </div>
+                <button class="btn btn-small" style="float:right;" type="button">Contactar</button>
             </div>
             <div class="tarjeta__imagen">
                 <img src="<%= post.photo %>" alt="perrito perdido">
@@ -31,7 +29,7 @@
 </div>
 
 <div id="tab-encontrados" class="tab-content">
-    <% foundPosts.forEach(function(post) {  %>
+    <% foundPosts.forEach((post) => {  %>
         <div class="tarjeta tarjeta--perrrito-perdido" id="<%= post._id%>">
             <div class="tarjeta__titulo">
                 <img src="img/placeholder.jpg" alt="foto de perfil">

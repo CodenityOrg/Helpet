@@ -102,7 +102,6 @@
 
 .tarjeta__titulo {
     padding: 0.5em 1em;
-    display: flex;
     align-items: center;
 }
 
@@ -253,17 +252,16 @@
 
 #snackbar {
     visibility: hidden;
-    min-width: 250px;
-    margin-left: -125px;
     background-color: rgba(33, 177, 106, 1);
     color: #fff;
     text-align: center;
-    border-radius: 2px;
+    border-radius: 5px;
     padding: 16px;
-    position: fixed;
     z-index: 9999999999999;
-    left: 50%;
     top: 30px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 17px;
 }
 
@@ -291,4 +289,25 @@
 @keyframes fadeout {
     from {top: 30px; opacity: 1;}
     to {top: 0; opacity: 0;}
+}
+
+.btn{
+    border-radius: 5px;
+    background: #005522;
+    border: none;
+    color: white;
+    width: 15em;
+    height: 3em;
+}
+
+.btn-regular {
+    width: 15em;
+}
+
+.btn-small {
+    width: 10em;
+}
+
+.form {
+    width: 400px;
 }

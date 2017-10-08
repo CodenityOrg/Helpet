@@ -29,25 +29,29 @@
             <!-- INICIO cuerpo -->
             <section class="cont cont--register">
                 <ul class="register">
-                    <h3>REGISTRARSE</h3>
+                    <h3>REGISTRATE</h3>
                     <div>
-                        <form action="" id="register-form">
-                            <div class="form-input input--register">
+                        <form class="form" id="register-form">
+                            <div class="form-input">
                                 <input type="text" name="name" placeholder="Nombres" >
+                            </div>
+                            <div class="form-input">
                                 <input type="text" name="lastname"  placeholder="Apellidos" >
                             </div>
                             <div class="form-input">
-                                <input type="Email" name="email" placeholder="Correo">
+                                <input type="phone" name="phone" placeholder="Telefono (Opcional)">
                             </div>
                             <div class="form-input">
-                                <input type="phone" name="phone" placeholder="Telefono">
+                                <input type="email" name="email" placeholder="Correo">
                             </div>
                             <div class="form-input">
                                 <input type="password" name="password" placeholder="Contraseña">
                             </div>
+                            <div class="g-recaptcha" data-sitekey="6Ld2lDMUAAAAAAANVdV6YEsvi8xehx9NmXK8Ce8a"></div>
                             <div class="form-submit">
-                                <button class="frm--btm" type="submit">Aceptar</button>
+                                <button class="btn btn-regular" type="submit">Aceptar</button>
                             </div>
+                            
                         </form>
                     </div>
                 </ul>
@@ -69,5 +73,6 @@
             user.initLoginModal();
             user.registerForm();
         </script>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
     </body>
 </html>
