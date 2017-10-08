@@ -17,7 +17,11 @@
     "unique-filename": "^1.1.0",
     "ws": "^3.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-jsmin": "^0.1.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node bin/www"
