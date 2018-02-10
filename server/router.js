@@ -5,6 +5,7 @@ var fs = require('fs'),
 let routes = [];
 
 var server = {
+    
     use: function(route) {
         routes.push(route);
     },

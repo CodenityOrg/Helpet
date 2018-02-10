@@ -1,3 +1,30 @@
+
+function notificacionChrome(){
+    document.addEventListener('DOMContentLoaded', function () {
+      if (Notification.permission !== "granted")
+        Notification.requestPermission();
+    });
+}
+
+function notifyMe(title,body,openUrl) {
+  if (!Notification) {
+    //-alert('Desktop notifications not available in your browser. Try Chromium.'); 
+    return;
+  }
+  if (Notification.permission !== "granted")
+    Notification.requestPermission();
+  else {
+    var notification = new Notification(title, {
+      icon: './public/img/ico-logo.png',
+      body: body,
+    });
+
+    notification.onclick = function () {
+      window.open(openUrl);      
+    };
+  }
+}
+
 function abrirModal(idModal) {
     var modal = document.getElementById(idModal);
     var modalBox = modal.children[0];

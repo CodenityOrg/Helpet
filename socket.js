@@ -10,3 +10,6 @@ wss.on('connection', function connection(ws) {
 	});
 
 });
+
+
+//modularizacion de funciones 
