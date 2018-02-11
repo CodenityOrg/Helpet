@@ -2,7 +2,7 @@
 const bcrypt = require("bcrypt");
 const mongodb = require("mongodb");
 const ObjectID = mongodb.ObjectID;
-const connection = require("../db/con.js");
+const connection = require("../db/connect.js");
 
 module.exports.login = (data) => {
   const users = global.db.collection("users");
