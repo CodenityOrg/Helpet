@@ -2,6 +2,7 @@
 const faker = require("faker");
 const Bale = require("bale.js");
 const bale = new Bale();
+const bcrypt = require("bcrypt");
 
 function roundBetween(fr, to){
     return Math.floor(Math.random() * to) + fr;
@@ -12,6 +13,6 @@ module.exports = bale.genSeed("users", 10, (user) =>{
     user.lastname = faker.name.lastName();
     user.description = faker.lorem.paragraph();
     user.email = faker.internet.email();
-    user.password = "1234567"; 
+    user.password = bcrypt.hashSync("1234567", 8); 
     return user;
 });

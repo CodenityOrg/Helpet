@@ -16,11 +16,10 @@ gulp.task("default", () => {
         .pipe(jsmin())
         .pipe(rename({suffix: ".min"}))
         .pipe(gulp.dest("public/dist/js"));
-  });
+});
 
 
 gulp.task('stream', function () {
-    // Endless stream mode 
     return watch('public/js/**/*.js', { ignoreInitial: false })
         .pipe(jsmin())
         .pipe(rename({suffix: ".min"}))

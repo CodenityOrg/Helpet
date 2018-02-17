@@ -7,11 +7,15 @@ const path = require("path");
 const randomstring = require("randomstring");
 const socket = global.wss;
 const url  = require("url");
+const thumb = require("node-thumbnail").thumb;
+
 
 module.exports = {
 	create(req, res) {
 		const userId = req.session.get("userId","");
-		if(!userId) return res.send(null, 401);
+		if(!userId) { 
+			return res.send(null, 401);
+		}
 		const form = new formidable.IncomingForm();
 		form.parse(req, (err, fields, files) => {
 			let data = fields;
@@ -19,7 +23,9 @@ module.exports = {
 			data.userId  = userId;
 			Post.create(data)
 				.then((err,result) => {
-					if(err) return res.send(null,500);
+					if(err) {
+						return res.send(null,500);
+					}
 					socket.send({
 						title: "Nueva publicacion",
 						type: "post",
@@ -61,7 +67,9 @@ module.exports = {
 	getOne(req, res) {
 		const id = req.query.id;
 		Post.getOne(id, (err,post) => {
-			if(err) return res.send(null,503);
+			if(err) { 
+				return res.send(null,503);
+			}
 			return res.json(post);
 		});
 	},

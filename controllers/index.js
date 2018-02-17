@@ -5,6 +5,7 @@ const ejs 		= require("ejs");
 const User 		= require("../model/User");
 const Post 		= require("../model/Post");
 const Feature   = require("../model/Feature");
+
 module.exports = {
 	indexView (req,res) {
 		const userId = req.session.get("userId");
