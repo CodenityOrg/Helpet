@@ -1,20 +1,17 @@
-let http = require('http'),
-	url = require('url');
+"use strict";
+const http = require("http");
+const url = require("url");
+const socket = require("./socket.js");
+const index = require("./routes/index.js");
+const mHack = require("./server/mhack.js");
 
-let socket = require('./socket.js');
+const app = mHack();
 
-let index = require('./routes/index.js'),
-	mHack = require('./server/mhack.js');
-
-
-
-let app = mHack();
-
-var db = require('./db/con.js');
+const db = require("./db/con.js");
 db.connect();
-
 app.use(index);
 
 const serv = http.createServer(app.server);
+global.wss = socket(serv);
 
-module.exports = { serv:serv };
+module.exports = { serv };

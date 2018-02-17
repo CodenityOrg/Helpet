@@ -1,5 +1,4 @@
-                
-            <div class="slogan">
+<div class="slogan">
     <h3 align="center">NUEVA PUBLICACION</h3>
 </div>
 <div class="formulario--img">
@@ -8,13 +7,12 @@
     </div>
 </div>
 <div class="form-submit">
-        <input name="photo" style="display:none" type="file" id="file-image">
-        <button class="frm--btm add-photo" onchange="document.getElementById('img-selected').src = window.URL.createObjectURL(this.files[0])" >Agregar foto</button>
-    </div>
-
+    <input name="photo" style="display:none" type="file" id="file-image">
+    <button class="frm--btm add-photo" onchange="document.getElementById('img-selected').src = window.URL.createObjectURL(this.files[0])" >Agregar foto</button>
+</div>
 <div class="fromneet">
     <div class="form-input input--register">
-        <textarea placeholder="Descripcion" cols="70" rows="7" ></textarea>
+        <textarea placeholder="Descripcion" cols="70" rows="30" ></textarea>
     </div>    
 </div>
 <div class="fromneet">
@@ -31,20 +29,20 @@
 <div class="cleck--flex">
     <label class="cleck--flex">
         <div class="field--input">
-            <input name="type" type="radio" checked="">
+            <input name="type" type="radio" value="lost">
         </div>
             <span>Perdido</span>
     </label>
     <label class="cleck--flex">
         <div class="field--input">
-            <input name="type" type="radio">
+            <input name="type" type="radio" value="found">
         </div>
             <span>Encontrado</span>
     </label>
 </div>
 <div class="opcion">
     <div class="form-submit">
-            <button class="frm--btm" type="submit">Aceptar</button>
+        <button class="frm--btm" type="submit">Aceptar</button>
     </div>
 </div>
 

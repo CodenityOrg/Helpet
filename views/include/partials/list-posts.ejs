@@ -1,58 +1,53 @@
  <div class="tab-links">
-                <button type="button" class="tab-link active" id="showTab-perdidos" onclick="mostrarTab('perdidos')">Perdidos</button>
-                <button type="button" class="tab-link" id="showTab-encontrados" onclick="mostrarTab('encontrados')">Encontrados</button>
+    <button type="button" class="tab-link active posts-tab" data-type="0" data-tab="tab-perdidos" id="showTab-perdidos">Perdidos</button>
+    <button type="button" class="tab-link posts-tab" data-type="1" data-tab="tab-encontrados" id="showTab-encontrados">Encontrados</button>
+</div>
+
+<div id="tab-perdidos" class="tab-content active">
+    <% lostPosts.forEach((post) => {  %>
+        <div class="tarjeta tarjeta--perrrito-perdido" id="<%= post._id %>">
+            <div class="tarjeta__titulo">
+                <img src="img/placeholder.jpg" alt="foto de perfil">
+                <span><%= post.user.name %> <%= post.user.lastname %>  </span>
+                <button class="btn btn-small" style="float:right;" type="button">Contactar</button>
             </div>
-
-            <div id="tab-perdidos" class="active">
-
-                <% for(var i=0,post; post = lostPosts[i]; i++) {%>
-                    <div class="tarjeta tarjeta--perrrito-perdido" id="<%= post._id%>">
-                        <div class="tarjeta__titulo">
-                            <img src="img/placeholder.jpg" alt="foto de perfil">
-                            <span><%= post.user.name %> <%= post.user.lastname %>  </span>
-                        </div>
-                        <div class="tarjeta__imagen">
-                            <img src="<%= post.photo %>" alt="perrito perdido">
-                        </div>
-                        <div class="tarjeta__descripcion">
-                            <p class="descripcion"><%= post.description %> </p>
-                            <p class="direccion">Avenida 11 cuadra 4</p>
-                            <div class="caracteristicas">
-                                <p><b> Características </b> </p>
-                                <span class="caracteristica">pelo negro</span>
-                                <span class="caracteristica">oreja cortada</span>
-                                <span class="caracteristica">raza pequeña</span>
-                            </div>
-                        </div>
-                    </div>
-                <% } %>
-                
+            <div class="tarjeta__imagen">
+                <img src="<%= post.photo %>" alt="perrito perdido">
             </div>
-
-            <div id="tab-encontrados" class="">
-                <% for(var i=0,post; post = foundPosts[i]; i++) {%>
-
-                    <div class="tarjeta tarjeta--perrrito-perdido" id="<%= post._id%>">
-                        <div class="tarjeta__titulo">
-                            <img src="img/placeholder.jpg" alt="foto de perfil">
-                            <span><%= post.user.name %> <%= post.user.lastname %>  </span>
-                        </div>
-                        <div class="tarjeta__imagen">
-                            <img src="<%= post.photo %>" alt="perrito perdido">
-                        </div>
-                        <div class="tarjeta__descripcion">
-                            <p class="descripcion"> <%= post.description %> </p>
-                            <p class="direccion">Avenida 11 cuadra 4</p>
-                            <div class="caracteristicas">
-                                <p>Características</p>
-                                <span class="caracteristica">pelo negro</span>
-                                <span class="caracteristica">oreja cortada</span>
-                                <span class="caracteristica">raza pequeña</span>
-                            </div>
-                        </div>
-                    </div>
-                <% } %>
-
-                
-
+            <div class="tarjeta__descripcion">
+                <p class="descripcion"><%= post.description %> </p>
+                <p class="direccion"><%= post.address %></p>
+                <div class="caracteristicas">
+                    <p><b> Características </b> </p>
+                    <% post.features.forEach( function(feature) { %>
+                        <span class="caracteristica"><%= feature.name %></span>
+                    <% }); %>
+                </div>
             </div>
+        </div>
+    <% }); %>
+</div>
+
+<div id="tab-encontrados" class="tab-content">
+    <% foundPosts.forEach((post) => {  %>
+        <div class="tarjeta tarjeta--perrrito-perdido" id="<%= post._id%>">
+            <div class="tarjeta__titulo">
+                <img src="img/placeholder.jpg" alt="foto de perfil">
+                <span><%= post.user.name %> <%= post.user.lastname %>  </span>
+            </div>
+            <div class="tarjeta__imagen">
+                <img src="<%= post.photo %>" alt="perrito perdido">
+            </div>
+            <div class="tarjeta__descripcion">
+                <p class="descripcion"> <%= post.description %> </p>
+                <p class="direccion"><%= post.address %></p>
+                <div class="caracteristicas">
+                    <p><b> Características </b> </p>
+                    <% post.features.forEach( function(feature) { %>
+                        <span class="caracteristica"><%= feature.name %></span>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>

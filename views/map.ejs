@@ -1,53 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
+    <head>
+        <% include ./include/partials/head %>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
 
-<head>
-    <meta charset='utf-8'>
-    <title>HELPET - inicio</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
-    <!-- estilos -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/componentes.css">
-    <link rel="stylesheet" href="css/estilos.css">
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="css/perdido.css">
-    <!-- scripts -->
-    <!-- iconos font awesome -->
-    <script src="https://use.fontawesome.com/fcfd0a87ec.js"></script>
-
-</head>
-
-<body>
-    <div class="fromneet" id="test">
-        <div class="form-input">
-            <input  type="text">
-        </div>
-    </div>
-    <% include ./include/partials/nav %>
-    <% include ./include/modals/login-modal %>
-
-    <div class="cont cont--inicio">
-        <div class="cont--tarjetas">
-            <div class="content">
-                <% include ./include/partials/list-posts %>
+        <!--<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />-->
+        <link rel="stylesheet" href="dist/css/perdido.css">
+        <!-- scripts -->
+        <!-- iconos font awesome -->
+        <script src="https://use.fontawesome.com/fcfd0a87ec.js"></script>
+    </head>
+    <body>
+        <div id="snackbar"></div>
+        <% include ./include/partials/nav %>
+        <% include ./include/modals/login-modal %>
+        <div class="cont cont--inicio">
+            <div class="cont--tarjetas">
+                <div class="content">
+                    <% include ./include/partials/list-posts %>
+                </div>
+            </div>
+            <div class="cont--mapa">
+                <div id='map'></div>
             </div>
         </div>
-        <div class="cont--mapa">
-            <div id='map'></div>
-        </div>
-    </div>
+        <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+        <!--<script type="text/javascript" src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js"></script>-->
+        <script type="text/javascript" src="dist/js/main.min.js"></script>
+        <script type="text/javascript" src="dist/js/posts.min.js"></script>
+        <script type="text/javascript" src="dist/js/mapbox.view.min.js"></script>
+        <script type="text/javascript" src="dist/js/user.min.js"></script>
+        <script>
+            user.loginForm();
+            const postView = new PostView();
+            const mapboxView = new MapboxView({
+                el: "map",
+                token: "pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
+            });
+            mapboxView.fetchPostTypeMap(0);
+            postView.initTabs(mapboxView);
+        </script>
 
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
-    <script src="js/main.js"></script>
-    <script src="js/mapbox.view.js"></script>
-    <script>
-
-        var mapboxView = new MapboxView('map');
-        mapboxView.fetchPostTypeMap();
-
-    </script>
-    <script type="text/javascript" src="js/login.js"></script>
-
-</body>
-
+    </body>
 </html>

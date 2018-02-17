@@ -11,15 +11,15 @@ Array.prototype.oIndexOf = function(condition){
 
 var Seltc = (function (opts){
 
-    var seltcs = [];
+    let seltcs = [];
 
-    var containerValues = document.createElement("DIV"),
+    let containerValues = document.createElement("DIV"),
         inputValue = document.createElement("INPUT"),
         listOptions = document.createElement("UL");
     
-    var selectedOptions = [];
+    let selectedOptions = [];
 
-    var options = [
+    let options = [
         {
             id:1,
             name:"Rojo"
@@ -44,17 +44,17 @@ var Seltc = (function (opts){
             name:"Enfermo"
         }];
 
-    var availableOptions = options;
+    let availableOptions = options;
     
-    var init = function(){
+    let init = function(){
         let elements = document.getElementsByClassName("selectize-input");
         for (let index = 0, element; element = elements[index]; index++) {
             seltcs.push(_genSelect(element)) ;
         }
     }
-    var count = 0;
+    let count = 0;
 
-    var clearList  = function(){
+    let clearList  = function(){
         while (listOptions.firstChild) {
             listOptions.removeChild(listOptions.firstChild);
         }
@@ -75,7 +75,7 @@ var Seltc = (function (opts){
         })
     }
 
-    var SeltcEvents = {
+    let SeltcEvents = {
         keyup(e){
             let field = e.target;
             let results = [];            
@@ -254,7 +254,7 @@ var Seltc = (function (opts){
         
     }
 
-    var _genSelect = function(element){
+    let _genSelect = function(element){
 
         element.style.display = "none";
 
@@ -296,9 +296,9 @@ var Seltc = (function (opts){
         }  
 
         return {
-            selectedOptions: selectedOptions,
-            container: container,
-            reset: reset
+            selectedOptions,
+            container,
+            reset
         }
     }
 

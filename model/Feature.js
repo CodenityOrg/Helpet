@@ -1,18 +1,14 @@
-var bcrypt = require('bcrypt');
-var mongodb = require('mongodb');
-var ObjectID = mongodb.ObjectID;
-
-var db = require('../db/con.js').db;
-var features = db.collection('features')
+"use strict";
 
 module.exports = {
     create(data) {
+        const features = global.db.collection("features");
         return features.insert(data); 
     },
 
-    find(q,limit){
+    find(q, limit){
+        const features = global.db.collection("features");
         if(limit) features.find(q).limit(limit).toArray();
         return features.find(q).toArray();
     }
 }
-

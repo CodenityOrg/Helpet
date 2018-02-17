@@ -1,34 +1,102 @@
-var user = {
-	create : function(form) {
+const user = {
+	init(){
+        this.initLoginModal();
+		this.initRegisterModal();
+        this.loginForm();
+    },
+    loginForm() {
+		const self = this;
+        document.getElementById("form-login").onsubmit = function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            self.login(this);
+        }
+    },
+    registerForm() {
+        const self = this;
+        document.getElementById("register-form").onsubmit = function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            self.register(this);
+        };
+    },
+    initLoginModal() {
+        const loginModal = document.getElementById("start-login");
+        const loginBodyModal = document.getElementById("modal-login");
+        const loginCloseModal = document.getElementById("close-login");
 
-		var xhttp = new XMLHttpRequest();
-		var formData = new FormData(form);
+        if(loginModal){
+            loginModal.addEventListener("click",function(){
+                loginBodyModal.classList.toggle("showlogin");
+            });
+        }
 
-		xhttp.onreadystatechange = function() {
-		    if (this.readyState == 4 && this.status == 200) {
-		       // Typical action to be performed when the document is ready:
-		       document.getElementById("demo").innerHTML = xhttp.responseText;
-		    }
-		};
+        if(loginCloseModal){
+            loginCloseModal.addEventListener("click",function(){
+                loginBodyModal.classList.toggle("showlogin");
+            });
+        }
+    },
+	initRegisterModal() {
+		const registerModal = document.getElementById("start-register");
+		const bgback = document.getElementById("bg-register");
+		const closeModal = document.getElementById("close-register");
 
-		xhttp.open("POST", "http://localhost:3000/post");
-		xhttp.send(formData);
+		if (registerModal) {
+			registerModal.addEventListener("click",function(){
+				bgback.classList.toggle("showregister");
+			});
+
+			closeModal.addEventListener("click",function(){
+				bgback.classList.toggle("showregister");
+			});
+		}
 	},
-	login: function(form) {
+    login(form) {
+        const data = {
+            email: form.email.value,
+            password: form.password.value
+        };
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function (data) {
+            if(xhr.readyState == 4 && xhr.status === 200) {
+                location = "/mapa";
+            } else {
+                showSnackBar("Email o contraseña incorrecta, intentelo de nuevo", "danger");
+            }
+        };
+        xhr.open("POST", "/login", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
 
-		var xhttp = new XMLHttpRequest();
-		var formData = new FormData(form);
+        xhr.send(JSON.stringify(data));
+    },
+    register(form) {
+        const data = {
+            email: form.email.value,
+            password: form.password.value,
+            name: form.name.value,
+            lastname: form.lastname.value,
+            phone: form.phone.value
+        };  
 
-		xhttp.onreadystatechange = function() {
-		    if (this.readyState == 4 && this.status == 200) {
-		       // Typical action to be performed when the document is ready:
-		       document.getElementById("demo").innerHTML = xhttp.responseText;
-		    }
-		};
+        if (!data.email || !data.password || !data.name || !data.lastname) {
+            return showSnackBar("Por favor complete los datos antes de continuar", "danger");
+        }
 
-		xhttp.open("POST", "http://localhost:3000/post");
-		xhttp.send(formData);
+        if (grecaptcha.getResponse() !== "") {
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState == 4 && xhr.status === 200) {
+                    location = "/mapa";
+                }
+            };
+            xhr.open("POST", "/user", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(JSON.stringify(data));    
+        } else {
+            showSnackBar("Por favor acepte el captcha antes de continuar", "danger");
+        }
+      
+    }
 
-
-	}
 }

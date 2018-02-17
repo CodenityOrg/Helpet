@@ -1,22 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
-        <title>HELPET - perdido</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- estilos -->
-        <link rel="stylesheet" href="css/base.css">
-        <link rel="stylesheet" href="css/componentes.css">
-        <link rel="stylesheet" href="css/estilos.css">
-        <link rel="stylesheet" href="css/perdido.css">
-        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />
-        <!-- scripts -->
-        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
-        <script src="js/main.js"></script>
-        <link rel="stylesheet" href="css/seltc.css">
+        <% include ./include/partials/head %>
+        <link rel="stylesheet" href="dist/css/perdido.css">
+        <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css" rel="stylesheet" />
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="dist/css/seltc.css">
         <script src="https://use.fontawesome.com/fcfd0a87ec.js"></script>
     </head>
     <body>
+        <div id="snackbar"></div>
         <!-- Inicio de menu -->
         <% include ./include/partials/nav %>
 
@@ -24,30 +17,53 @@
         <section class="cont cont--inicio">
         <!-- inicio de formulario -->
             <div class="cont--formulario">
-                <% include ./include/partials/post %>
-
+                <form id="post-form">
+                    <% include ./include/partials/post %>
+                </form>
             </div>
         <!-- Final de formulario -->
         <!-- Inicio del mapa -->
             <div class="cont--mapa">
-                <div id='map'></div>
+                <div id="map"></div>
             </div>
         <!-- Final del mapa -->
         </section>
-        
-        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
-        <script src="js/mapbox.view.js"></script>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js"></script>
+        <script type="text/javascript" src="dist/js/main.min.js"></script>
+        <script type="text/javascript" src="dist/js/mapbox.view.min.js"></script>
+        <script type="text/javascript" src="dist/js/seltc.custom.min.js"></script>
+        <script type="text/javascript" src="dist/js/posts.min.js"></script>
         <script>
-            var mapboxView = new MapboxView('map');
+            const mapboxView = new MapboxView("map");
             mapboxView.initAddMarkerEvent();
-        </script>
-        <script type="text/javascript" src="js/seltc.custom.js"></script>
-        <script>
-            var seltc = new Seltc({
+            const PostsView = new PostView();
+            const seltc = new Seltc({
                 url:"/features/list"
             });
+            document.getElementById("post-form").onsubmit = function (e){
+                e.preventDefault();
+                const currentMarker = mapboxView.getCurrentMarker();
+                if(!currentMarker) return showSnackBar("Por favor, seleccione una ubicacion en el mapa");
+                const { lat, lng } = currentMarker._lngLat;
+                const features = seltc[0].selectedOptions;
+                if(!features.length) return showSnackBar("Por favor, seleccione algunas caracteristicas");
+                const featuresId = seltc[0].selectedOptions.map(item => item.id);
+                
+                const data = {
+                    latitude: lat,
+                    longitude: lng,
+                    featuresId
+                };
+
+                PostsView.create(this, data);
+            }
+
+            function showSnackBar(message) {
+                const snackbar = document.getElementById("snackbar");
+                snackbar.innerHTML = message;
+                snackbar.className = "show";
+                setTimeout(function(){ snackbar.className = snackbar.className.replace("show", ""); }, 6000);
+            }
         </script>
-
-
     </body>
 </html>

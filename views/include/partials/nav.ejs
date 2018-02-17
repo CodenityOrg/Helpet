@@ -2,12 +2,11 @@
         <div class="navbar__logo">
             <% if(path=="/") { %>
                 <a href="/"><img src="img/ico-logo.png" alt="logo helpet"></a>
-            <% }else{ %>
+            <% } else { %>
                 <a href="/"><img src="img/ico-logov.png" alt="logo helpet"></a>
             <% } %>
         </div>
         <ul class="navbar__menu">
-            
             <% if(!user) { %>
                 <li>
                     <button type="button" onclick="abrirModal('modalIniciarSesion')">Inicia</button>
@@ -15,11 +14,11 @@
                 <li>
                     <a href="/registro">Regístrate</a>
                 </li>
-            <% }else { %>
+            <% } else { %>
                 <li>
                     <a href="/publicacion" id="new-post">Nuevo post</a>
                 </li>
-                <li>
+                <li class="navbar_nombre">
                     <a href=""><%= user.name %> <%= user.lastname %></a>
                 </li>
                 <li>

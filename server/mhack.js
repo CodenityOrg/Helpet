@@ -11,12 +11,10 @@ let session = new NodeSession({
     driver: 'file'
 });
 
-
-
 module.exports = (function(req,res){
-    var viewPath = path.join(__dirname,'..', 'views');
+    const viewPath = path.join(__dirname,'..', 'views');
 
-    let methods = {
+    const methods = {
         init(req,res){
             
             //Default template engine is EJS
@@ -41,30 +39,35 @@ module.exports = (function(req,res){
                     this.send(JSON.stringify(data));
                 }
         
-                res.send = function(file,code) {
-        
+                res.send = function(file, code) {
                     if(!code) code = 200;
-        
                     if(file){
                         this.writeHead(200,{ 'Content-Type': 'text/html' })
                         this.write(file);
+                        this.end();
+                        return;
                     }
+                    
+                    this.writeHead(code);
                     this.end();
                 }
         
-                if(["POST","PUT"].indexOf(req.method)>=0){
-            
-                    req.on('data', function (chunk) {
-                        body += String(chunk);
-                    });
-                    req.on('end', function () {
-                        if(body&& !(body instanceof Object))	req.body = JSON.parse(body);
+                if (["POST","PUT"].indexOf(req.method) >= 0) {
+                    
+                    if (req.headers["content-type"].indexOf("multipart/form-data") < 0){
+                        req.on('data', function (chunk) {
+                            body += String(chunk);
+                        });
+                        req.on('end', function () {
+                            if(body&& !(body instanceof Object))	req.body = JSON.parse(body);
+                            router.check(pathname,req,res);
+                        });
+                    } else {
                         router.check(pathname,req,res);
-                    });
+                    }
         
                     return;
-                }else{
-                    
+                } else {
                     req.query = url.parse(req.url,true).query;
                     router.check(pathname,req,res);
                 }
@@ -73,9 +76,7 @@ module.exports = (function(req,res){
             });
         }
     }
-    
-
-    
+     
     return {
         server(req,res){
             methods.init(req,res);

@@ -102,7 +102,6 @@
 
 .tarjeta__titulo {
     padding: 0.5em 1em;
-    display: flex;
     align-items: center;
 }
 
@@ -148,7 +147,9 @@
 .marker--perdido {
     border: 3px solid #f44336;
 }
-
+.marker--location {
+    border: 3px solid #ffff00;
+}
 .marker--encontrado {
     border: 3px solid var(--color-logo-verde);
 }
@@ -249,4 +250,66 @@
 .hoverable:hover {
     transition: box-shadow .25s;
     box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#snackbar {
+    visibility: hidden;
+    background-color: rgba(33, 177, 106, 1);
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    z-index: 9999999999999;
+    top: 30px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 17px;
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {top: 0; opacity: 0;} 
+    to {top: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+    from {top: 30px; opacity: 1;} 
+    to {top: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+    from {top: 30px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+
+.btn{
+    border-radius: 5px;
+    background: #005522;
+    border: none;
+    color: white;
+    width: 15em;
+    height: 3em;
+}
+
+.btn-regular {
+    width: 15em;
+}
+
+.btn-small {
+    width: 10em;
+}
+
+.form {
+    width: 400px;
 }

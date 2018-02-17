@@ -12,7 +12,7 @@ li{
 }
 body {
     min-height: 100vh;
-    background: #00d455;
+    background: rgba(33, 177, 106, 1);
     background-position: center;
     background-size: cover;
     position: relative;
@@ -26,7 +26,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 6em;
     height: 100%;
     width: 100%;
 }
@@ -69,14 +68,7 @@ figure img{
 .form-submit{
     text-align: center;
 }
-.frm--btm{
-    border-radius: 5px;
-    background: #005522;
-    border: none;
-    color: white;
-    width: 15em;
-    height: 3em;
-}
+
 .iconos{
     color: white;
 }

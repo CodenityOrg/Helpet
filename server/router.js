@@ -11,7 +11,7 @@ var server = {
     },
 
 	check: function(pathname,req,res) {
-        let allowedAssetRes = ["js","css","uploads","img"],
+        let allowedAssetRes = ["js", "css", "uploads", "img", "dist", "fonts"],
             assetResource = pathname.split("/")[1];
 
 		if(allowedAssetRes.indexOf(assetResource)>=0) {
