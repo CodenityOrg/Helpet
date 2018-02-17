@@ -33,7 +33,8 @@ var MapboxView = (function(opts){
                 el.className = "marker marker--encontrado" ;
                 el.style.width =  "48px";
                 el.style.height = "48px";
-        
+                el.style.backgroundImage = `url('img/logo-helpet.png')`;
+
                 let coordinates = [e.lngLat.lng, e.lngLat.lat];
 
                 marker = new mapboxgl.Marker(el, {
@@ -74,7 +75,9 @@ var MapboxView = (function(opts){
 
             let el = document.createElement("div");
             el.className = (data.type == 1) ? "marker marker--encontrado" : "marker marker--perdido";
-            if(data.photo) el.style.backgroundImage = `url(${data.photo})`;
+            if(data.photo) { 
+                el.style.backgroundImage = `url(${data.photo})`;
+            }
             el.style.width = data.properties.iconSize[0]? (data.properties.iconSize[0]+ 'px'):'48px';
             el.style.height = data.properties.iconSize[1]? (data.properties.iconSize[1]+ 'px'):'48px';
     
@@ -91,6 +94,7 @@ var MapboxView = (function(opts){
                 photo = data.photo,
                 latitude = data.latitude || data.lat,
                 longitude = data.longitude || data.lng;
+            
             // Create a new marker in Mapbox instance
             let marker = new mapboxgl.Marker(this.genLayoutMarker(data), {
                     offset: [-data.properties.iconSize[0] / 2, -data.properties.iconSize[1] / 2]

@@ -34,19 +34,27 @@
         <script type="text/javascript" src="dist/js/seltc.custom.min.js"></script>
         <script type="text/javascript" src="dist/js/posts.min.js"></script>
         <script>
-            const mapboxView = new MapboxView("map");
+            const mapboxView = new MapboxView({
+                el: "map",
+                token: "pk.eyJ1IjoiYW5nZWxyb2Rybzk1IiwiYSI6ImNqODljcTJrdDAxaWIyd21rNTZubHQwamMifQ.6ghwymwGfrRC15-iKOxcww"
+            });
             mapboxView.initAddMarkerEvent();
             const PostsView = new PostView();
             const seltc = new Seltc({
                 url:"/features/list"
             });
-            document.getElementById("post-form").onsubmit = function (e){
+
+            document.getElementById("post-form").onsubmit = (e) => {
                 e.preventDefault();
                 const currentMarker = mapboxView.getCurrentMarker();
-                if(!currentMarker) return showSnackBar("Por favor, seleccione una ubicacion en el mapa");
+                if (!currentMarker) { 
+                    return showSnackBar("Por favor, seleccione una ubicacion en el mapa");
+                }
                 const { lat, lng } = currentMarker._lngLat;
                 const features = seltc[0].selectedOptions;
-                if(!features.length) return showSnackBar("Por favor, seleccione algunas caracteristicas");
+                if (!features.length) { 
+                    return showSnackBar("Por favor, seleccione algunas caracteristicas");
+                }
                 const featuresId = seltc[0].selectedOptions.map(item => item.id);
                 
                 const data = {
@@ -62,7 +70,9 @@
                 const snackbar = document.getElementById("snackbar");
                 snackbar.innerHTML = message;
                 snackbar.className = "show";
-                setTimeout(function(){ snackbar.className = snackbar.className.replace("show", ""); }, 6000);
+                setTimeout(() => { 
+                    snackbar.className = snackbar.className.replace("show", ""); 
+                }, 6000);
             }
         </script>
     </body>
