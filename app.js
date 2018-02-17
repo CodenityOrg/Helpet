@@ -7,7 +7,7 @@ const mHack = require("./server/mhack.js");
 
 const app = mHack();
 
-const db = require("./db/con.js");
+const db = require("./db/connect.js");
 db.connect();
 app.use(index);
 

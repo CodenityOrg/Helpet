@@ -1,6 +1,6 @@
 "use strict";
 const bcrypt = require("bcrypt");
-const connection = require("../db/con.js");
+const connection = require("../db/connect.js");
 
 
 module.exports.create = (data) => {
@@ -19,12 +19,12 @@ module.exports.create = (data) => {
 
 module.exports.find = (data,limit) => {
   const posts = global.db.collection("posts");
-  
+
   if(limit) return posts.find(data).limit(limit).toArray();
   return posts.find(data).toArray();
 }
 
-module.exports.remove = (data) => {  
+module.exports.remove = (data) => {
   posts.remove({});
 }
 
