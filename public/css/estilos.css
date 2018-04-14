@@ -240,7 +240,11 @@
     background: white;
     text-decoration: none;
     text-align: center;
+    font-weight: 700;
     max-width: 10em;
+}
+.cont--slogan .slogan a:hover{
+    background: rgb(211, 210, 210);
 }
 
 /**

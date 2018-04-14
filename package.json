@@ -27,9 +27,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seeder":"set NODE_ENV=production && node seeders/DatabaseSeeder.js",
+    "seeder": "set NODE_ENV=production && node seeders/DatabaseSeeder.js",
     "start": "nodemon bin/www"
-
   },
   "repository": {
     "type": "git",
