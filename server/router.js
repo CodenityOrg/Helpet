@@ -8,7 +8,6 @@ var server = {
     use: function(route) {
         routes.push(route);
     },
-
 	check: function(pathname,req,res) {
         let allowedAssetRes = ["js", "css", "uploads", "img", "dist", "fonts"],
             assetResource = pathname.split("/")[1];
@@ -28,9 +27,7 @@ var server = {
             return res.end("Not found");
         }
     },
-
     static: function(route, pathname, req, res) {
-
         fs.readFile(route + "" + pathname, function(err, static) {
             if (!static) {
                 res.writeHead(404);

@@ -53,8 +53,7 @@ module.exports = (function(req,res){
                 }
         
                 if (["POST","PUT"].indexOf(req.method) >= 0) {
-                    
-                    if (req.headers["content-type"].indexOf("multipart/form-data") < 0){
+                    if (req.headers["content-type"].indexOf("multipart/form-data") < 0) {
                         req.on('data', function (chunk) {
                             body += String(chunk);
                         });
@@ -71,8 +70,6 @@ module.exports = (function(req,res){
                     req.query = url.parse(req.url,true).query;
                     router.check(pathname,req,res);
                 }
-
-                
             });
         }
     }

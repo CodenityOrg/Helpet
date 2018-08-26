@@ -12,7 +12,7 @@ module.exports = {
 				return res.send(null,503);
 			});
 	},
-	login(req,res){
+	login(req, res){
 		const data = req.body;
 		
 		if (!data.email) return res.send(null,401);
@@ -32,12 +32,12 @@ module.exports = {
 
 		if (userId) {
 			return User.savePreferenceUser(data, (err,result) => {
-				if(err) return res.send(null,503);
+				if(err) return res.send(null, 503);
 				return res.send();
 			});
 		}
 
-		return res.send(null,401);
+		return res.send(null, 401);
 	},
 	logout: function(req,res){
 
