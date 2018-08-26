@@ -192,13 +192,15 @@
     width: 100%;
     min-height: 100vh;
 }
-
-.cont--slogan {
-    padding-top: 1em;
-    padding-left: 11.5em;
-    padding-right: 10.5em;
+.slogan__elemt{
     display: flex;
     align-items: center;
+
+}
+.cont--slogan {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: var(--bg-color-transparente);
     height: 100%;
 }
@@ -212,24 +214,25 @@
     color: white;
 }
 
-.cont--slogan .slogan h3 {
+.slogan__title {
     color: inherit;
     font-weight: 300;
-    font-size: 2em;
+    font-size: 2.5em;
 }
-
-.cont--slogan .logo {}
+.slogan__title--bold {
+    color: inherit;
+    font-weight: 900;
+}
+.slogan__subtitle {
+    color: inherit;
+    font-weight: 300;
+    font-size: 1em;
+}
 
 .cont--slogan .logo img {
     display: block;
     margin: auto auto;
     max-width: 11em;
-}
-
-.cont--slogan .slogan span {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    display: block;
 }
 
 .cont--slogan .slogan a {
@@ -240,7 +243,11 @@
     background: white;
     text-decoration: none;
     text-align: center;
+    font-weight: 700;
     max-width: 10em;
+}
+.cont--slogan .slogan a:hover{
+    background: rgb(211, 210, 210);
 }
 
 /**
@@ -397,4 +404,34 @@
 
 .input-group input:nth-child(1) {
     margin-right: 5px;
+}
+
+@media (min-width: 1200px) {  }
+@media (min-width: 992px) { }
+@media (max-width: 768px) {
+    .slogan__elemt {
+        margin:  0 0 0 1em;
+    }
+    .slogan__title {
+        color: inherit;
+        font-weight: 300;
+        font-size: 2em;
+    }
+}
+@media (max-width: 576px) {
+    .slogan__title {
+        color: inherit;
+        font-weight: 300;
+        font-size: 1.5em;
+    }
+    .slogan__elemt {
+        justify-content: center;
+        margin:  6em 0 0 0;
+    }
+    .slogan__subtitle{
+        display: none;
+    }
+    .cont--slogan .logo{
+        display: none;
+    }
 }
