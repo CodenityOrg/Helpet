@@ -7,8 +7,6 @@ module.exports = function(server) {
 			console.log(message);
 		});
 	});
-
-	return wss;
 }
 
- 
+//modularizacion de funciones 

@@ -5,7 +5,7 @@ var MapboxView = (function(opts){
     
     const map = new mapboxgl.Map({
         container: opts.el,
-        style: "mapbox://styles/mapbox/streets-v9",
+        style: 'mapbox://styles/mapbox/streets-v9',
         center: [-70.221799, -18.0031498],
         zoom: 15
     });

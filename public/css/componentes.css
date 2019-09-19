@@ -147,7 +147,9 @@
 .marker--perdido {
     border: 3px solid #f44336;
 }
-
+.marker--location {
+    border: 3px solid #ffff00;
+}
 .marker--encontrado {
     border: 3px solid var(--color-logo-verde);
 }
